@@ -114,5 +114,7 @@ MonoBehaviour:
   currHP: 10
   maxStamina: 3
   currStamina: 3
+  numMoves: 1
+  numMovesRemaining: 0
   isTurn: 0
   unitType: 2
