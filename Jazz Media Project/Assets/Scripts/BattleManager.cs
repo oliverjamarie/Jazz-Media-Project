@@ -53,7 +53,7 @@ public class BattleManager : MonoBehaviour
     }
 
     void setupBattle(){
-        print("To play your turn press SPACE");
+        print("To play your turn press SPACE or LEFT CLICK");
 
         playerGO = Instantiate(playerPrefab, playerSpawnPoint);
         playerUnit = playerGO.GetComponent<Unit>();
