@@ -15,10 +15,11 @@ public class Unit : MonoBehaviour
    public int numMoves;
    public int numMovesRemaining;
 
-   public bool isTurn;
+   public int defense;
+   public int attackPts;
 
-
-   private int countPrint = 0;
+   //public bool isTurn;
+   public bool usesStamina;
 
    public enum unitTypeEnum{
       Player,
@@ -39,4 +40,44 @@ public class Unit : MonoBehaviour
       currStamina = maxStamina;
    }
 
+   public void initTurn(){
+      if (usesStamina == true){
+         currStamina -=1; 
+      }
+
+      numMovesRemaining = numMoves;
+   }
+
+   public void attack(Unit target){
+      print(unitName + " Is Attacking " + target.unitName + "\tHP Left: " + target.currHP);
+      target.takeDamage(attackPts);
+      numMovesRemaining -= 1;
+   }
+
+   public void defend(){
+      defense += 1;
+      print(unitName + " Is Defending. Current Defense Points " + defense);
+      numMovesRemaining -= 1;
+
+   }
+
+   public void takeDamage(int damagePts){
+
+      if (damagePts > defense){
+         damagePts -= defense;
+         defense = 0;
+         
+         currHP -= damagePts;
+      }
+      else
+      {
+          defense -= attackPts;
+      }      
+   }
+
+   public void taunt(){
+      numMoves += 1;
+      numMovesRemaining = 0;
+
+   }
 }
