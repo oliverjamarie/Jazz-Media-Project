@@ -115,6 +115,8 @@ MonoBehaviour:
   maxStamina: 3
   currStamina: 3
   numMoves: 1
-  numMovesRemaining: 0
-  isTurn: 0
+  numMovesRemaining: 1
+  defense: 0
+  attackPts: 2
+  usesStamina: 0
   unitType: 0
