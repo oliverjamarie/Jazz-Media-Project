@@ -116,5 +116,7 @@ MonoBehaviour:
   currStamina: 3
   numMoves: 1
   numMovesRemaining: 0
+  defense: 0
+  attackPts: 3
   isTurn: 0
   unitType: 2
