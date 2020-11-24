@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour
    public string unitName;
 
    public int maxHP;
-   private int currHP;
+   public int currHP;
 
    public int maxStamina;
    private int currStamina;
