@@ -117,6 +117,7 @@ MonoBehaviour:
   numMoves: 1
   numMovesRemaining: 0
   defense: 0
+  defenseModifier: 1
   attackPts: 3
-  isTurn: 0
+  usesStamina: 0
   unitType: 2
