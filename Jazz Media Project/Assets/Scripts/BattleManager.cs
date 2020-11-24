@@ -88,26 +88,46 @@ public class BattleManager : MonoBehaviour
     // Function is a button listener so it has to be an IEnumerator
     IEnumerator PlayerAttack(){ 
         playerUnit.attack(enemyUnit);
-
         yield return new WaitForSeconds(1f);
-        
-        
+    }
+
+    IEnumerator playerDefend(){
+        playerUnit.defend();
+        yield return new WaitForSeconds(1f);
+    }
+
+    IEnumerator playerTaunt(){
+        playerUnit.taunt();
+        yield return new WaitForSeconds(1f);
     }
 
     public void OnAttackButton(){
         if (gameState != BattleState.Player_Turn){
-            print("NOT THE PLAYER'S TURN");
             print (gameState);
             return;
         }
-        print("I HEARD YOU BRO");
         StartCoroutine(PlayerAttack());
+    }
+
+    public void onDefendButton(){
+        if (gameState != BattleState.Player_Turn){
+            print (gameState);
+            return;
+        }
+        StartCoroutine(playerDefend());
+    }
+
+    public void onTauntButton(){
+        if (gameState != BattleState.Player_Turn){
+            print (gameState);
+            return;
+        }
+        StartCoroutine(playerTaunt());
     }
 
     
 
     void battleEnemyTurn(){
-        print("Enemy is taking their turn");
         int action = (int) (Random.value * 10) % 3;
 
         enemyUnit.initTurn();
