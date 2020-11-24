@@ -36,24 +36,30 @@ public class BattleManager : MonoBehaviour
     }
 
     void Update(){
-        if (playerUnit.currHP <= 0){
+        if (playerUnit.currHP <= 0){ // Player is dead
             print(playerUnit.unitName + " is dead");
             gameState = BattleState.Lost;
             enabled = false;
             Destroy(playerGO);
         }
+        else if (enemyUnit.currHP <= 0){ // Enemy is Dead
+            print(enemyUnit.unitName + " is dead");
+            gameState= BattleState.Won;
+            enabled = false;
+            Destroy(enemyGO);
+        }
         else{
-            if (gameState == BattleState.Player_Turn){
+            if (gameState == BattleState.Player_Turn){ // Player's Turn
                 battlePlayerTurn();
             }
-            else if (gameState == BattleState.Enemy_Turn){
+            else if (gameState == BattleState.Enemy_Turn){// Enemy's Turn
                 battleEnemyTurn();
             }
         }
     }
 
     void setupBattle(){
-        print("To play your turn press SPACE or LEFT CLICK");
+        print("To play your turn press SPACE or RIGHT CLICK");
 
         playerGO = Instantiate(playerPrefab, playerSpawnPoint);
         playerUnit = playerGO.GetComponent<Unit>();
@@ -66,40 +72,61 @@ public class BattleManager : MonoBehaviour
     }
 
     void battlePlayerTurn(){
-        if (Input.GetKeyDown("space") || Input.GetButtonDown("Fire1")){
+        if (Input.GetKeyDown("space") || Input.GetButtonDown("Fire2")){
             print("Player is taking their turn");
             playerUnit.numMovesRemaining -= 1;            
         }
 
         if (playerUnit.numMovesRemaining == 0){
             gameState = BattleState.Enemy_Turn;
-            
+            print("No moves remaining");
             playerUnit.numMovesRemaining = playerUnit.numMoves;
         }
     }
+
+    // IEnumerator allows the function to be a coroutine 
+    // Function is a button listener so it has to be an IEnumerator
+    IEnumerator PlayerAttack(){ 
+        playerUnit.attack(enemyUnit);
+
+        yield return new WaitForSeconds(1f);
+        
+        
+    }
+
+    public void OnAttackButton(){
+        if (gameState != BattleState.Player_Turn){
+            print("NOT THE PLAYER'S TURN");
+            print (gameState);
+            return;
+        }
+        print("I HEARD YOU BRO");
+        StartCoroutine(PlayerAttack());
+    }
+
+    
 
     void battleEnemyTurn(){
         print("Enemy is taking their turn");
         int action = (int) (Random.value * 10) % 3;
 
-        for(int i = 0; i < enemyUnit.numMovesRemaining; i ++){
+        enemyUnit.initTurn();
+
+        while (enemyUnit.numMovesRemaining > 0){
             if (action == 0){ // attack
-                print ("Enemy is attacking");
-                playerUnit.currHP -= 2;
+                enemyUnit.attack(playerUnit);
             } 
             else if (action == 1){ // taunt
-                print("Enemy is tauting");
-                enemyUnit.numMovesRemaining += 1;
+                enemyUnit.taunt();
                 break;
             }
             else { // defend
-                print("Enemy is defending");
+                enemyUnit.defend();
             }
         }
 
-        enemyUnit.numMovesRemaining = enemyUnit.numMoves;
-
         gameState = BattleState.Player_Turn;
+        playerUnit.initTurn();
     }
 
     
