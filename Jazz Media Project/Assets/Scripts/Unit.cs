@@ -4,81 +4,89 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-   public string unitName;
+    public string unitName;
 
-   public int maxHP;
-   public int currHP;
+    public int maxHP;
+    public int currHP;
 
-   public int maxStamina;
-   private int currStamina;
+    public int maxStamina;
+    private int currStamina;
 
-   public int numMoves;
-   public int numMovesRemaining;
+    public int maxNumMoves;
+    public int numMovesRemaining;
 
-   public int defense;
-   public int defenseModifier = 1;
-   public int attackPts;
+    public int defense;
+    public int defenseModifier = 1;
+    public int attackPts;
 
-   //public bool isTurn;
-   public bool usesStamina;
+    //public bool isTurn;
+    public bool usesStamina;
 
-   public enum unitTypeEnum{
-      Player,
-      Creature,
-      Enemy
-   }
+    public enum unitTypeEnum{
+        Player,
+        Creature,
+        Enemy
+    }
 
-   public unitTypeEnum unitType;
+    public unitTypeEnum unitType;
 
-   private enum actions{
-      Attack,
-      Taunt,
-      Defend
-   }
+    private enum actions{
+        Attack,
+        Taunt,
+        Defend
+    }
 
-   void Start(){
-      currHP = maxHP;
-      currStamina = maxStamina;
-   }
 
-   public void initTurn(){
-      print("Name:\t" + unitName + "\tCurrent HP:\t" + currHP + "\tCuurent Defense:\t" + defense + "\tNumber of moves:\t" + numMoves);
-      if (usesStamina == true){
-         currStamina -=1; 
-      }
+    void Start(){
+        currHP = maxHP;
+        currStamina = maxStamina;
+    }
 
-      numMovesRemaining = numMoves;
-   }
+    public void initTurn(){
+        print("Name:\t" + unitName + "\tCurrent HP:\t" + currHP + "\tCurrent Defense:\t" + defense + "\tNumber of moves:\t" + maxNumMoves);
+        if (usesStamina == true){
+            currStamina -=1; 
+        }
 
-   public void attack(Unit target){
-      target.takeDamage(attackPts);
-      numMovesRemaining -= 1;
-   }
+        numMovesRemaining = maxNumMoves;
+    }
 
-   public void defend(){
-      defense += 1;
+    public void attack(Unit target){
+        print(unitName + " is attacking");
+        target.takeDamage(attackPts);
+        numMovesRemaining -= 1;
+    }
+
+    public void defend(){
+        print(unitName + " is defending");
+        defense += 1;
       
-      numMovesRemaining -= 1;
+        numMovesRemaining -= 1;
 
-   }
+    }
 
-   void takeDamage(int damagePts){
+    public void takeDamage(int damagePts){
 
-      if (damagePts > defense){
-         damagePts -= defense;
-         defense = 0;
-         print("damage points\t" + damagePts);
-         currHP -= damagePts;
-      }
-      else
-      {
-          defense -= attackPts;
-      }      
-   }
+        if (damagePts > defense){
+            damagePts -= defense;
+            defense = 0;
+            print("damage points\t" + damagePts);
+            currHP -= damagePts;
+        }
+        else
+        {
+            defense -= attackPts;
+        }
 
-   public void taunt(){
-      numMoves += 1;
-      numMovesRemaining = 0;
+        if (currHP < 0)
+        {
+            currHP = 0;
+        }
+    }
 
-   }
+    public void taunt(){
+        print(unitName + " is taunting");
+        maxNumMoves += 1;
+        numMovesRemaining = 0;
+    }
 }
