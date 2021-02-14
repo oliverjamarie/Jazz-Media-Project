@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1576366685292592309}
   - component: {fileID: 1576366685292592308}
   - component: {fileID: 1576366685292592296}
+  - component: {fileID: 1144958810704345861}
+  - component: {fileID: -686295392898723525}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -113,11 +115,42 @@ MonoBehaviour:
   maxHP: 10
   currHP: 10
   maxStamina: 3
-  currStamina: 3
-  numMoves: 1
+  maxNumMoves: 1
   numMovesRemaining: 1
   defense: 0
   defenseModifier: 1
   attackPts: 2
   usesStamina: 0
   unitType: 0
+--- !u!114 &1144958810704345861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576366685292592311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32df1d8b423f49c7a46338bd5c6aa10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 665520134952277917, guid: 698ec3838c2d54f62a776474984b2680, type: 3}
+  - {fileID: 6668961169379790398, guid: 9f13e5fad3d994363bcd9b372d901ea4, type: 3}
+  - {fileID: 8792207532908360471, guid: 195e54e17ecdc4ea9af129643271b4eb, type: 3}
+--- !u!114 &-686295392898723525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1576366685292592311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2770f9b4c29b4004b1f0fe0ee87495e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleManager: {fileID: 0}
+  hand: {fileID: 0}
+  unit: {fileID: 1576366685292592296}
+  maxHandSize: 8
