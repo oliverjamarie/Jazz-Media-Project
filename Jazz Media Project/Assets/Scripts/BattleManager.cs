@@ -22,10 +22,14 @@ public class BattleManager : MonoBehaviour
     public Transform enemySpawnPoint;
     private GameObject enemyGO;
 
+    public GameObject playerHand;
+
     public BattleState gameState;
 
     public Unit playerUnit;
     public Unit enemyUnit;
+
+    public Player player;
 
     // Start is called before the first frame update
     void Start()
@@ -61,69 +65,28 @@ public class BattleManager : MonoBehaviour
     void setupBattle(){
         print("To play your turn press SPACE or RIGHT CLICK");
 
+        playerPrefab.GetComponent<Player>().battleManager = this;
+        playerPrefab.GetComponent<Player>().hand = playerHand;
         playerGO = Instantiate(playerPrefab, playerSpawnPoint);
         playerUnit = playerGO.GetComponent<Unit>();
+        player = playerGO.GetComponent<Player>();
 
         enemyGO = Instantiate(enemyPrefab, enemySpawnPoint);
         enemyUnit = enemyGO.GetComponent<Unit>();
 
-        print(playerUnit.unitName);
         gameState = BattleState.Player_Turn;
     }
 
     void battlePlayerTurn(){
-        if (Input.GetKeyDown("space") || Input.GetButtonDown("Fire2")){
-            print("Player is taking their turn");
-            playerUnit.numMovesRemaining -= 1;            
-        }
 
-        if (playerUnit.numMovesRemaining == 0){
+        if (playerUnit.numMovesRemaining <= 0){
             gameState = BattleState.Enemy_Turn;
             print("No moves remaining");
-            playerUnit.numMovesRemaining = playerUnit.numMoves;
+            playerUnit.numMovesRemaining = playerUnit.maxNumMoves;
         }
     }
 
-    // IEnumerator allows the function to be a coroutine 
-    // Function is a button listener so it has to be an IEnumerator
-    IEnumerator PlayerAttack(){ 
-        playerUnit.attack(enemyUnit);
-        yield return new WaitForSeconds(1f);
-    }
-
-    IEnumerator playerDefend(){
-        playerUnit.defend();
-        yield return new WaitForSeconds(1f);
-    }
-
-    IEnumerator playerTaunt(){
-        playerUnit.taunt();
-        yield return new WaitForSeconds(1f);
-    }
-
-    public void OnAttackButton(){
-        if (gameState != BattleState.Player_Turn){
-            print (gameState);
-            return;
-        }
-        StartCoroutine(PlayerAttack());
-    }
-
-    public void onDefendButton(){
-        if (gameState != BattleState.Player_Turn){
-            print (gameState);
-            return;
-        }
-        StartCoroutine(playerDefend());
-    }
-
-    public void onTauntButton(){
-        if (gameState != BattleState.Player_Turn){
-            print (gameState);
-            return;
-        }
-        StartCoroutine(playerTaunt());
-    }
+    
 
     
 
@@ -144,11 +107,9 @@ public class BattleManager : MonoBehaviour
                 enemyUnit.defend();
             }
         }
+        playerUnit.initTurn();
 
         gameState = BattleState.Player_Turn;
-        playerUnit.initTurn();
+        
     }
-
-    
-
 }
