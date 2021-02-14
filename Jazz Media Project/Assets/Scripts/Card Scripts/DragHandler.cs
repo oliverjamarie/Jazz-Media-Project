@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class DragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    //public BattleManager battleManager;
     public Transform parentToReturnTo = null;
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -15,6 +16,7 @@ public class DragHandler : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndD
         transform.SetParent(transform.parent.parent);
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
+        
     }
 
     public void OnDrag(PointerEventData eventData)
