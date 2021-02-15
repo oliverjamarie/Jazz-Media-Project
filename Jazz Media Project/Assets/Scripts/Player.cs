@@ -50,14 +50,8 @@ public class Player : MonoBehaviour
         }
     }
 
-    // NOT YET FULLY IMPLEMENTED
-    public void DealCrdBtnListen()
+    public void DealCard()
     {
-        if (unit == null)
-        {
-            print("WHY THE FUCK IS UNIT NULL");
-        }
-
         if (currHandSize <= maxHandSize && unit.numMovesRemaining > 0
             && battleManager.gameState == BattleState.Player_Turn)
         {

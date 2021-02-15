@@ -112,4 +112,12 @@ public class BattleManager : MonoBehaviour
         gameState = BattleState.Player_Turn;
         
     }
+
+    public void DealCardBtnListen()
+    {
+        if (gameState == BattleState.Player_Turn)
+        {
+            player.DealCard();
+        }
+    }
 }
