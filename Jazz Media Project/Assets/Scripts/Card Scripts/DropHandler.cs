@@ -33,14 +33,22 @@ public class DropHandler : MonoBehaviour, IDropHandler
         {
             drag.parentToReturnTo = this.transform;
 
-            card.effect();
+            if (battleManager.player.playCard(eventData.pointerDrag.gameObject) == true)
+            {
+                cardPlayed.text = cardPlayedInitialString + "\t" +
+                    card.getCardTitle().text + "\t\t(" + card.getCardDesc().text + ")";
 
-            cardPlayed.text = cardPlayedInitialString + "\t"+
-                card.getCardTitle().text + "\t\t(" + card.getCardDesc().text+")";
+                Destroy(eventData.pointerDrag.gameObject);
 
-            Destroy(eventData.pointerDrag.gameObject);
+                battleManager.player.currHandSize--;
+            }
+            else
+            {
+                cardPlayed.text = "Cannot play " + card.getCardTitle();
+            } 
+            
         }
 
-        battleManager.player.currHandSize--;
+        // battleManager.player.currHandSize--;
     }
 }
