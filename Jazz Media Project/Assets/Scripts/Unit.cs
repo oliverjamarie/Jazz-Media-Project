@@ -16,7 +16,7 @@ public class Unit : MonoBehaviour
     public int numMovesRemaining;
 
     public int defense;
-    public int defenseModifier = 1;
+    public int defenseModifier;
     public int attackPts;
 
     //public bool isTurn;
@@ -43,7 +43,10 @@ public class Unit : MonoBehaviour
     }
 
     public void initTurn(){
-        print("Name:\t" + unitName + "\tCurrent HP:\t" + currHP + "\tCurrent Defense:\t" + defense + "\tNumber of moves:\t" + maxNumMoves);
+        print("Name:\t" + unitName + "\tCurrent HP:\t" + currHP
+            + "\tCurrent Defense:\t" + defense
+            + "\tNumber of moves:\t" + maxNumMoves
+            + "\tAttack Modifier:\t" + attackPts);
         if (usesStamina == true){
             currStamina -=1; 
         }
@@ -59,23 +62,21 @@ public class Unit : MonoBehaviour
 
     public void defend(){
         print(unitName + " is defending");
-        defense += 1;
+        defense += defenseModifier;
       
         numMovesRemaining -= 1;
 
     }
 
     void takeDamage(int damagePts){
+        print(unitName + " is taking " + damagePts + " damage. Defence: " + defense);
+        currHP -= damagePts + defense;
 
-        if (damagePts > defense){
-            damagePts -= defense;
-            defense = 0;
-            print("damage points\t" + damagePts);
-            currHP -= damagePts;
-        }
-        else
+        defense -= damagePts;
+
+        if (defense < 0)
         {
-            defense -= attackPts;
+            defense = 0;
         }
 
         if (currHP < 0)
