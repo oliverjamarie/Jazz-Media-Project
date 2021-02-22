@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour
 
     }
 
-    public void takeDamage(int damagePts){
+    void takeDamage(int damagePts){
 
         if (damagePts > defense){
             damagePts -= defense;
