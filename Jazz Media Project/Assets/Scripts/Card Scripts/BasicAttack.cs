@@ -17,7 +17,7 @@ public class BasicAttack : MonoBehaviour, CardInterface
 
     public void effect()
     {
-        battleManager.enemyUnit.takeDamage(damage);
+        battleManager.playerUnit.attack(battleManager.enemyUnit, damage);
         battleManager.playerUnit.numMovesRemaining -= cost;
     }
 
