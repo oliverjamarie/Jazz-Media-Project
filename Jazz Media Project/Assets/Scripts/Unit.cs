@@ -51,9 +51,9 @@ public class Unit : MonoBehaviour
         numMovesRemaining = maxNumMoves;
     }
 
-    public void attack(Unit target){
-        print(unitName + " is attacking");
-        target.takeDamage(attackPts);
+    public void attack(Unit target, int damage){
+        print(unitName + " is attacking with " + attackPts + " base attack points" );
+        target.takeDamage(attackPts + damage);
         numMovesRemaining -= 1;
     }
 
