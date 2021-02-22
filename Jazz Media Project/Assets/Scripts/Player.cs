@@ -8,7 +8,8 @@ public class Player : MonoBehaviour
     public GameObject hand;
     Unit unit;
     Deck deck;
-    public int maxHandSize, currHandSize;
+    public int maxHandSize, initialHandSize;
+    int currHandSize;
 
     // Start is called before the first frame update
     void Start()
@@ -22,9 +23,9 @@ public class Player : MonoBehaviour
             throw new System.NotSupportedException();
         }
 
-        currHandSize = 5;
+        currHandSize = initialHandSize;
 
-        GameObject[] cards = deck.dealCards(5);
+        GameObject[] cards = deck.dealCards(initialHandSize);
 
         foreach (GameObject card in cards)
         {
@@ -41,7 +42,7 @@ public class Player : MonoBehaviour
             print("BattleManager is NULL");
         }
 
-        if (currHandSize == 0 && battleManager.gameState == BattleState.Player_Turn)
+        if (currHandSize <= 0 && battleManager.gameState == BattleState.Player_Turn)
         {
             GameObject card = deck.dealCard();
             card.GetComponent<BasicCardInfo>().battleManager = battleManager;
@@ -71,12 +72,22 @@ public class Player : MonoBehaviour
         if (cardComponent == null)
             return false;
 
-        cardComponent.effect();
+        if (unit.numMovesRemaining - cardComponent.getCardCost() < 0)
+            return false;
 
-        currHandSize--;
+        cardComponent.effect(unit, battleManager.enemyUnit);
+
+        unit.numMovesRemaining -= cardComponent.getCardCost();
+
+        currHandSize -=1 ;
 
         deck.discardCard(card);
 
         return true;
+    }
+
+    public int getCurrHandSize()
+    {
+        return currHandSize;
     }
 }
