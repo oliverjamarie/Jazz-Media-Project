@@ -62,4 +62,21 @@ public class Player : MonoBehaviour
             unit.numMovesRemaining--;
         }
     }
+
+    public bool playCard(GameObject card)
+    {
+
+        CardInterface cardComponent = card.GetComponent<CardInterface>();
+
+        if (cardComponent == null)
+            return false;
+
+        cardComponent.effect();
+
+        currHandSize--;
+
+        deck.discardCard(card);
+
+        return true;
+    }
 }
