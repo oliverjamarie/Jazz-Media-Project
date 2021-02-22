@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum BattleState {
         Start,
@@ -86,18 +87,15 @@ public class BattleManager : MonoBehaviour
         }
     }
 
-    
-
-    
-
     void battleEnemyTurn(){
         int action = (int) (Random.value * 10) % 3;
+
 
         enemyUnit.initTurn();
 
         while (enemyUnit.numMovesRemaining > 0){
             if (action == 0){ // attack
-                enemyUnit.attack(playerUnit);
+                enemyUnit.attack(playerUnit, enemyUnit.attackPts);
             } 
             else if (action == 1){ // taunt
                 enemyUnit.taunt();
