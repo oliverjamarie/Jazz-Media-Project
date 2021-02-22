@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5720060350228501846}
   - component: {fileID: 6920746853813437699}
   - component: {fileID: 5455061722584181177}
+  - component: {fileID: 8829090600949709829}
+  - component: {fileID: 746878082596914015}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -120,3 +122,32 @@ MonoBehaviour:
   attackPts: 3
   usesStamina: 0
   unitType: 2
+--- !u!114 &8829090600949709829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042147133177904086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41713ddd74faa46db87bdc8c14e84347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cards: []
+--- !u!114 &746878082596914015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3042147133177904086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32df1d8b423f49c7a46338bd5c6aa10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cards:
+  - {fileID: 665520134952277917, guid: 698ec3838c2d54f62a776474984b2680, type: 3}
+  - {fileID: 6668961169379790398, guid: 9f13e5fad3d994363bcd9b372d901ea4, type: 3}
+  - {fileID: 8792207532908360471, guid: 195e54e17ecdc4ea9af129643271b4eb, type: 3}
