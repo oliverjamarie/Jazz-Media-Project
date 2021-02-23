@@ -15,19 +15,9 @@ public class BasicDefend : MonoBehaviour, CardInterface
         battleManager = GetComponent<BasicCardInfo>().battleManager;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void effect(Unit playedBy, Unit target)
     {
-        
-    }
-
-    public void effect()
-    {
-        Unit player = battleManager.playerUnit;
-
-        player.defense = defenseValue;
-
-        player.numMovesRemaining -= cost;
+        playedBy.defense += defenseValue + playedBy.defenseModifier;
     }
 
     public Text getCardTitle()

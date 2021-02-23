@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class BasicAttack : MonoBehaviour, CardInterface
 {
-    public int damage = 1;
-    public int cost = 1;
+    public int damage;
+    public int cost;
     BattleManager battleManager;
     public Text cardTitle, cardDesc;
 
@@ -15,10 +15,9 @@ public class BasicAttack : MonoBehaviour, CardInterface
         battleManager = GetComponent<BasicCardInfo>().battleManager;
     }
 
-    public void effect()
+    public void effect(Unit playedBy, Unit target)
     {
-        battleManager.playerUnit.attack(battleManager.enemyUnit, damage);
-        battleManager.playerUnit.numMovesRemaining -= cost;
+        playedBy.attack(target, damage);
     }
 
     public Text getCardTitle()

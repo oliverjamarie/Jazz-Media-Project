@@ -3,22 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PreparedAttackCard : MonoBehaviour, CardInterface
+public class TauntCard : MonoBehaviour, CardInterface
 {
     BattleManager battleManager;
-    public int cost = 1;
-    public Text title, description;
+    public int cost;
+    public Text cardDesc, cardTitle;
 
-    // Start is called before the first frame update
     void Start()
     {
         battleManager = GetComponent<BasicCardInfo>().battleManager;
     }
 
-    public void effect()
+    public void effect(Unit playedBy, Unit target)
     {
-        battleManager.playerUnit.attackPts++;
-        battleManager.playerUnit.numMovesRemaining -= cost;
+        playedBy.maxNumMoves++;
     }
 
     public int getCardCost()
@@ -28,13 +26,11 @@ public class PreparedAttackCard : MonoBehaviour, CardInterface
 
     public Text getCardDesc()
     {
-        return description;
+        return cardDesc;
     }
 
     public Text getCardTitle()
     {
-        return title;
+        return cardTitle;
     }
-
-    
 }

@@ -328,6 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentToReturnTo: {fileID: 0}
+  parentHand: {fileID: 0}
 --- !u!114 &540954512595419531
 MonoBehaviour:
   m_ObjectHideFlags: 0

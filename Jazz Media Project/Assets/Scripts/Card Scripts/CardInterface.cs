@@ -2,7 +2,7 @@
 
 public interface CardInterface
 {
-    void effect();
+    void effect(Unit playedBy, Unit target);
     Text getCardTitle();
     Text getCardDesc();
     int getCardCost();

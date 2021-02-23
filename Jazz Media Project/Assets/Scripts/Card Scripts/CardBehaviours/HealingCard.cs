@@ -3,24 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TauntCard : MonoBehaviour, CardInterface
+public class HealingCard : MonoBehaviour, CardInterface
 {
+    public Text cardTitle, cardDesc;
+    public int cost, healAmt;
     BattleManager battleManager;
-    public int cost;
-    public Text cardDesc, cardTitle;
 
+
+    // Start is called before the first frame update
     void Start()
     {
         battleManager = GetComponent<BasicCardInfo>().battleManager;
     }
 
-    public void effect()
+    public void effect(Unit playedBy, Unit target)
     {
-        Unit player = battleManager.playerUnit;
+        playedBy.currHP += healAmt;
 
-        player.maxNumMoves++;
-
-        player.numMovesRemaining -= cost;
+        if (playedBy.currHP > playedBy.maxHP)
+            playedBy.currHP = playedBy.maxHP;
     }
 
     public int getCardCost()
@@ -37,4 +38,6 @@ public class TauntCard : MonoBehaviour, CardInterface
     {
         return cardTitle;
     }
+
+    
 }
