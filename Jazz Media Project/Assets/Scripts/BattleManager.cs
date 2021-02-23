@@ -72,6 +72,7 @@ public class BattleManager : MonoBehaviour
         playerUnit = playerGO.GetComponent<Unit>();
         player = playerGO.GetComponent<Player>();
 
+        enemyPrefab.GetComponent<Enemy>().battleManager = this;
         enemyGO = Instantiate(enemyPrefab, enemySpawnPoint);
         enemyUnit = enemyGO.GetComponent<Unit>();
 
@@ -84,27 +85,14 @@ public class BattleManager : MonoBehaviour
             gameState = BattleState.Enemy_Turn;
             print("No moves remaining");
             playerUnit.numMovesRemaining = playerUnit.maxNumMoves;
+
+            print("Number of cards in hand " + player.getCurrHandSize());
         }
     }
 
     void battleEnemyTurn(){
-        int action = (int) (Random.value * 10) % 3;
+        enemyGO.GetComponent<Enemy>().enemyPlay();
 
-
-        enemyUnit.initTurn();
-
-        while (enemyUnit.numMovesRemaining > 0){
-            if (action == 0){ // attack
-                enemyUnit.attack(playerUnit, enemyUnit.attackPts);
-            } 
-            else if (action == 1){ // taunt
-                enemyUnit.taunt();
-                break;
-            }
-            else { // defend
-                enemyUnit.defend();
-            }
-        }
         playerUnit.initTurn();
 
         gameState = BattleState.Player_Turn;
