@@ -27,7 +27,10 @@ public class Deck : MonoBehaviour
 
     public GameObject dealCard()
     {
-        return deck.Pop();
+        GameObject card = deck.Pop();
+        discardPile.Push(card);
+
+        return card;
     }
 
     public GameObject[] dealCards(int numCards)
@@ -89,5 +92,12 @@ public class Deck : MonoBehaviour
         discardPile.Push(card);
 
         return true;
+    }
+
+
+    // returns the card on the top of the deck
+    public GameObject getNextCard()
+    {
+        return deck.Peek();
     }
 }
