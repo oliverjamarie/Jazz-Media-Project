@@ -119,7 +119,7 @@ MonoBehaviour:
   numMovesRemaining: 1
   defense: 0
   defenseModifier: 1
-  attackPts: 2
+  attackPts: 0
   usesStamina: 0
   unitType: 0
 --- !u!114 &1144958810704345861
@@ -145,6 +145,9 @@ MonoBehaviour:
   - {fileID: 6051919044223605201, guid: f23dbf57569a3465281020018b6a8983, type: 3}
   - {fileID: 8792207532908360471, guid: 195e54e17ecdc4ea9af129643271b4eb, type: 3}
   - {fileID: 8792207532908360471, guid: 195e54e17ecdc4ea9af129643271b4eb, type: 3}
+  - {fileID: 4796093255790136057, guid: 0af9db15857f44df4bf5ac9b58c8df0f, type: 3}
+  - {fileID: 4796093255790136057, guid: 0af9db15857f44df4bf5ac9b58c8df0f, type: 3}
+  maxLength: 0
 --- !u!114 &-686295392898723525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,4 +163,4 @@ MonoBehaviour:
   battleManager: {fileID: 0}
   hand: {fileID: 0}
   maxHandSize: 8
-  currHandSize: 0
+  initialHandSize: 3
