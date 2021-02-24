@@ -22,7 +22,6 @@ public class BasicAttack : MonoBehaviour, CardInterface
 
     public Text getCardTitle()
     {
-        print(cardTitle.text);
         return cardTitle;
     }
 
