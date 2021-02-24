@@ -17,11 +17,11 @@ public class BattleManager : MonoBehaviour
 
     public GameObject playerPrefab;
     public Transform playerSpawnPoint;
-    private GameObject playerGO;
+    public GameObject playerGO;
 
     public GameObject enemyPrefab;
     public Transform enemySpawnPoint;
-    private GameObject enemyGO;
+    public GameObject enemyGO;
 
     public GameObject playerHand;
 
