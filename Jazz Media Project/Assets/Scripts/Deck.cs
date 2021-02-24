@@ -25,6 +25,15 @@ public class Deck : MonoBehaviour
         initDeck();
     }
 
+    private void Update()
+    {
+        if (deck.Count == 0)
+        {
+            print("deck is empty");
+            shuffle();
+        }
+    }
+
     public GameObject dealCard()
     {
         GameObject card = deck.Pop();
@@ -98,6 +107,11 @@ public class Deck : MonoBehaviour
     // returns the card on the top of the deck
     public GameObject getNextCard()
     {
+        if (deck.Count == 0)
+        {
+            shuffle();
+        }
+
         return deck.Peek();
     }
 }
