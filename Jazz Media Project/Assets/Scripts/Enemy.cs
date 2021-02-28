@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    public BattleManager battleManager;
+    BattleManager battleManager;
     public int maxHandSize, currHandSize, startHandSize;
     public Text nextMove;
     Deck deck;
@@ -18,13 +18,13 @@ public class Enemy : MonoBehaviour
     {
         deck = GetComponent<Deck>();
         unit = GetComponent<Unit>();
+        battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
     }
 
     public void enemyPlay()
     {
 
         GameObject card = deck.dealCard();
-        card.GetComponent<BasicCardInfo>().battleManager = battleManager;
         GameObject cardGO = Instantiate(card);
 
         cardGO.GetComponent<CardInterface>().effect(unit, battleManager.playerUnit);
