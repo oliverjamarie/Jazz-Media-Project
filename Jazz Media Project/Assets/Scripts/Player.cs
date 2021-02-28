@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public BattleManager battleManager;
+    BattleManager battleManager;
     public GameObject hand;
     Unit unit;
     Deck deck;
@@ -15,8 +15,9 @@ public class Player : MonoBehaviour
     void Start()
     {
         unit = GetComponent<Unit>();
-
         deck = GetComponent<Deck>();
+
+        battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
 
         if (deck == null)
         {
@@ -29,7 +30,6 @@ public class Player : MonoBehaviour
 
         foreach (GameObject card in cards)
         {
-            card.GetComponent<BasicCardInfo>().battleManager = battleManager;
             Instantiate(card, hand.transform);
         }
     }
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         if (currHandSize <= 0 && battleManager.gameState == BattleState.Player_Turn)
         {
             GameObject card = deck.dealCard();
-            card.GetComponent<BasicCardInfo>().battleManager = battleManager;
+            //card.GetComponent<BasicCardInfo>().battleManager = battleManager;
             Instantiate(card, hand.transform);
             currHandSize++;
         }
@@ -57,7 +57,6 @@ public class Player : MonoBehaviour
             && battleManager.gameState == BattleState.Player_Turn)
         {
             GameObject card = deck.dealCard();
-            card.GetComponent<BasicCardInfo>().battleManager = battleManager;
             Instantiate(card, hand.transform);
             currHandSize++;
             unit.numMovesRemaining--;
