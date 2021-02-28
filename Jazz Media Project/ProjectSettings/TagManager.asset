@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tabletop
   - Hand
+  - Battle Manager
   layers:
   - Default
   - TransparentFX
