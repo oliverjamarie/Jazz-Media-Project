@@ -16,7 +16,7 @@ public class Unit : MonoBehaviour
     public int numMovesRemaining;
 
     public int defense;
-    public int defenseModifier;
+    public int defensePts;
     public int attackPts;
 
     //public bool isTurn;
@@ -62,7 +62,7 @@ public class Unit : MonoBehaviour
 
     public void defend(){
         print(unitName + " is defending");
-        defense += defenseModifier;
+        defense += defensePts;
       
         numMovesRemaining -= 1;
 
