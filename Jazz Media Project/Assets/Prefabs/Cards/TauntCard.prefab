@@ -12,10 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9d70fbcfaf54dd8b37636293d0b701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleManager: {fileID: 0}
-  cost: 1
-  cardDesc: {fileID: 8792207534223634092}
-  cardTitle: {fileID: 8792207534665568886}
 --- !u!1001 &7421085173146400721
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23,6 +19,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4007478716690192151, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: cardCost
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4007478716690192151, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: cardCostText
+      value: 
+      objectReference: {fileID: 1370538252104324997}
     - target: {fileID: 2087646636448556455, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_Text
       value: Permamently increase your maximum number of moves until the end of the
@@ -127,20 +131,9 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2087646638222542022, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
   m_PrefabInstance: {fileID: 7421085173146400721}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8792207534223634092 stripped
+--- !u!114 &1370538252104324997 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2087646636844423549, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
-  m_PrefabInstance: {fileID: 7421085173146400721}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &8792207534665568886 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2087646636448556455, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8501068635304648788, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
   m_PrefabInstance: {fileID: 7421085173146400721}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

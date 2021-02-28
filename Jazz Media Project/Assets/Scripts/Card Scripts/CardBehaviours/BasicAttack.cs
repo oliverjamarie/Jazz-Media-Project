@@ -6,13 +6,15 @@ using UnityEngine.UI;
 public class BasicAttack : MonoBehaviour, CardInterface
 {
     public int damage;
-    public int cost;
+    BasicCardInfo cardInfo;
     BattleManager battleManager;
-    public Text cardTitle, cardDesc;
-
+    
+    
     private void Start()
     {
-        battleManager = GetComponent<BasicCardInfo>().battleManager;
+        cardInfo = GetComponent<BasicCardInfo>();
+        battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
+
     }
 
     public void effect(Unit playedBy, Unit target)
@@ -22,17 +24,17 @@ public class BasicAttack : MonoBehaviour, CardInterface
 
     public Text getCardTitle()
     {
-        return cardTitle;
+        return cardInfo.cardTitle;
     }
 
     public Text getCardDesc()
     {
-        return cardDesc;
+        return cardInfo.cardDesc;
     }
 
     public int getCardCost()
     {
-        return cost;
+        return cardInfo.cardCost;
     }
 
 }

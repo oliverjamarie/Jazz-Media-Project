@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class TauntCard : MonoBehaviour, CardInterface
 {
+    BasicCardInfo cardInfo;
     BattleManager battleManager;
-    public int cost;
-    public Text cardDesc, cardTitle;
 
     void Start()
     {
-        battleManager = GetComponent<BasicCardInfo>().battleManager;
+        cardInfo = GetComponent<BasicCardInfo>();
+        battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
+
+        if (cardInfo == null)
+            print("card is NULL");
     }
 
     public void effect(Unit playedBy, Unit target)
@@ -21,16 +24,16 @@ public class TauntCard : MonoBehaviour, CardInterface
 
     public int getCardCost()
     {
-        return cost;
+        return cardInfo.cardCost;
     }
 
     public Text getCardDesc()
     {
-        return cardDesc;
+        return cardInfo.cardDesc;
     }
 
     public Text getCardTitle()
     {
-        return cardTitle;
+        return cardInfo.cardTitle;
     }
 }

@@ -5,33 +5,38 @@ using UnityEngine.UI;
 
 public class BasicDefend : MonoBehaviour, CardInterface
 {
-    public int defenseValue, cost = 1;
-    public Text cardTitle, cardDesc;
+    public int defenseValue;
+    BasicCardInfo cardInfo;
+
     BattleManager battleManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        battleManager = GetComponent<BasicCardInfo>().battleManager;
+        cardInfo = GetComponent<BasicCardInfo>();
+        battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
+
+        if (cardInfo == null)
+            print("card is NULL");
     }
 
     public void effect(Unit playedBy, Unit target)
     {
-        playedBy.defense += defenseValue + playedBy.defenseModifier;
+        playedBy.defense += defenseValue + playedBy.defensePts;
     }
 
     public Text getCardTitle()
     {
-        return cardTitle;
+        return cardInfo.cardTitle;
     }
 
     public Text getCardDesc()
     {
-        return cardDesc;
+        return cardInfo.cardDesc;
     }
 
     public int getCardCost()
     {
-        return cost;
+        return cardInfo.cardCost;
     }
 }
