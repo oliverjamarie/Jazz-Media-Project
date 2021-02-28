@@ -5,20 +5,24 @@ using UnityEngine.UI;
 
 public class EnemyInfo : MonoBehaviour
 {
-    public Text health, defence, nextMoveOutput;
-    string baseHealthStr, baseDefenceStr;
-    public BattleManager battleManager;
+    public Text health, defence, nextMoveOutput, attPts, defPts, numMoves;
+    string baseHealthStr, baseDefenceStr, baseAttPtsStr, baseDefPtsStr, baseNumMovesStr;
+    BattleManager battleManager;
     Unit unit;
     Enemy enemy;
  
     // Start is called before the first frame update
     void Start()
     {
-        unit = battleManager.enemyUnit;
+        battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
 
+        unit = battleManager.enemyUnit;
 
         baseHealthStr = health.text;
         baseDefenceStr = defence.text;
+        baseAttPtsStr = attPts.text;
+        baseDefPtsStr = defPts.text;
+        baseNumMovesStr = numMoves.text;
 
         if (unit != null)
         {
@@ -45,6 +49,11 @@ public class EnemyInfo : MonoBehaviour
 
         health.text = baseHealthStr + "\n" + unit.currHP + "/" + unit.maxHP + "HP";
         defence.text = baseDefenceStr + "\n" + unit.defense;
-        nextMoveOutput.text = enemy.getNextMove().GetComponent<CardInterface>().getCardTitle().text;
+        attPts.text = baseAttPtsStr + "\n" + unit.attackPts;
+        defPts.text = baseDefPtsStr + "\n" + unit.defensePts;
+        numMoves.text = baseNumMovesStr + "\n" + unit.maxNumMoves;
+
+
+        nextMoveOutput.text = enemy.getNextMove().GetComponent<BasicCardInfo>().cardTitle.text;
     }
 }
