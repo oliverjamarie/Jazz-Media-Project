@@ -5,34 +5,36 @@ using UnityEngine.UI;
 
 public class PreparedAttackCard : MonoBehaviour, CardInterface
 {
+
+    public int modifier = 1; 
     BattleManager battleManager;
-    public int cost = 1;
-    public Text title, description;
+    BasicCardInfo cardInfo;
 
     // Start is called before the first frame update
     void Start()
     {
-        battleManager = GetComponent<BasicCardInfo>().battleManager;
+        cardInfo = GetComponent<BasicCardInfo>();
+        battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
     }
 
     public void effect(Unit playedBy, Unit target)
     {
-        playedBy.attackPts++;
+        playedBy.attackPts += modifier;
     }
 
     public int getCardCost()
     {
-        return cost;
+        return cardInfo.cardCost;
     }
 
     public Text getCardDesc()
     {
-        return description;
+        return cardInfo.cardDesc;
     }
 
     public Text getCardTitle()
     {
-        return title;
+        return cardInfo.cardTitle;
     }
 
     
