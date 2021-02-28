@@ -23,6 +23,11 @@ public class DropHandler : MonoBehaviour, IDropHandler
         DragHandler drag = eventData.pointerDrag.GetComponent<DragHandler>();
         CardInterface card = eventData.pointerDrag.GetComponent<CardInterface>();
 
+        if (drag.parentToReturnTo == this.transform)
+        {
+            print("Guess you decided against that");
+            return;
+        }
 
         if (battleManager.gameState == BattleState.Player_Turn)
         {
