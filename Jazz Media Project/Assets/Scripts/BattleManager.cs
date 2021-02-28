@@ -64,15 +64,12 @@ public class BattleManager : MonoBehaviour
     }
 
     void setupBattle(){
-        print("To play your turn press SPACE or RIGHT CLICK");
 
-        playerPrefab.GetComponent<Player>().battleManager = this;
         playerPrefab.GetComponent<Player>().hand = playerHand;
         playerGO = Instantiate(playerPrefab, playerSpawnPoint);
         playerUnit = playerGO.GetComponent<Unit>();
         player = playerGO.GetComponent<Player>();
 
-        enemyPrefab.GetComponent<Enemy>().battleManager = this;
         enemyGO = Instantiate(enemyPrefab, enemySpawnPoint);
         enemyUnit = enemyGO.GetComponent<Unit>();
 
