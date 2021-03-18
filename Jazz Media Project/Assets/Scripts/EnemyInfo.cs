@@ -37,6 +37,12 @@ public class EnemyInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (battleManager.gameState == BattleState.Won)
+        {
+            enabled = false;
+            return;
+        }
+
         if (unit == null)
         {
             unit = battleManager.enemyUnit;
@@ -54,6 +60,6 @@ public class EnemyInfo : MonoBehaviour
         numMoves.text = baseNumMovesStr + "\n" + unit.maxNumMoves;
 
 
-        nextMoveOutput.text = enemy.getNextMove().GetComponent<BasicCardInfo>().cardTitle.text;
+        nextMoveOutput.text = enemy.getNextMove().GetComponent<Card>().cardTitle;
     }
 }

@@ -41,7 +41,7 @@ public class PlayerInfo : MonoBehaviour
             unit = battleManager.playerUnit;
         }
 
-        if (unit.currHP == 0)
+        if (battleManager.gameState == BattleState.Lost)
         {
             enabled = false;
             return;

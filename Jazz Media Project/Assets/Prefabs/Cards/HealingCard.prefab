@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 768ccdc95180949b497e7b17a9d0661a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 1
+  costText: {fileID: 3138505413885161067}
+  battleManager: {fileID: 0}
+  cardTitle: 'Healing '
   healAmt: 4
 --- !u!1001 &6807167651376238143
 PrefabInstance:

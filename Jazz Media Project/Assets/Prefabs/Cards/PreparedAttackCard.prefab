@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed7ca8ca5e65b441ba685cb76442786a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 1
+  costText: {fileID: 4250746184091172163}
+  battleManager: {fileID: 0}
+  cardTitle: Prepared Attack
   modifier: 1
 --- !u!1001 &5693803097769745687
 PrefabInstance:

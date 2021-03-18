@@ -26,12 +26,13 @@ public class Player : MonoBehaviour
 
         currHandSize = initialHandSize;
 
-        GameObject[] cards = deck.dealCards(initialHandSize);
-
-        foreach (GameObject card in cards)
+        Card[] cards = deck.dealCards(initialHandSize);
+        
+        foreach (Card card in cards)
         {
             Instantiate(card, hand.transform);
         }
+        
     }
 
     // Update is called once per frame
@@ -44,8 +45,7 @@ public class Player : MonoBehaviour
 
         if (currHandSize <= 0 && battleManager.gameState == BattleState.Player_Turn)
         {
-            GameObject card = deck.dealCard();
-            //card.GetComponent<BasicCardInfo>().battleManager = battleManager;
+            Card card = deck.dealCard();
             Instantiate(card, hand.transform);
             currHandSize++;
         }
@@ -56,27 +56,23 @@ public class Player : MonoBehaviour
         if (currHandSize <= maxHandSize && unit.numMovesRemaining > 0
             && battleManager.gameState == BattleState.Player_Turn)
         {
-            GameObject card = deck.dealCard();
+            Card card = deck.dealCard();
             Instantiate(card, hand.transform);
             currHandSize++;
             unit.numMovesRemaining--;
         }
     }
 
-    public bool playCard(GameObject card)
+    public bool playCard(GameObject cardGO)
     {
+        Card card = cardGO.GetComponent<Card>();
 
-        CardInterface cardComponent = card.GetComponent<CardInterface>();
-
-        if (cardComponent == null)
+        if (unit.numMovesRemaining - card.cost < 0)
             return false;
 
-        if (unit.numMovesRemaining - cardComponent.getCardCost() < 0)
-            return false;
+        card.effect(unit, battleManager.enemyUnit);
 
-        cardComponent.effect(unit, battleManager.enemyUnit);
-
-        unit.numMovesRemaining -= cardComponent.getCardCost();
+        unit.numMovesRemaining -= card.cost;
 
         currHandSize -=1 ;
 

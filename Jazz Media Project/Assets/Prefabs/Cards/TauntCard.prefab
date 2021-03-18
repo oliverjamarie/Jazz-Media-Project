@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b9d70fbcfaf54dd8b37636293d0b701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 1
+  costText: {fileID: 1370538252104324997}
+  battleManager: {fileID: 0}
+  cardTitle: Taunt
 --- !u!1001 &7421085173146400721
 PrefabInstance:
   m_ObjectHideFlags: 0

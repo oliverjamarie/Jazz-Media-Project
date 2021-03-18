@@ -5,22 +5,16 @@ using UnityEngine.UI;
 
 public class Deck : MonoBehaviour 
 {
-    public List<GameObject> cards = new List<GameObject>();
-    Stack<GameObject> deck = new Stack<GameObject>();
-    Stack<GameObject> discardPile = new Stack<GameObject>();
+    public List<Card> cards = new List<Card>();
+    List<GameObject> expendedCards = new List<GameObject>();
+    Stack<Card> deck = new Stack<Card>();
+    Stack<Card> discardPile = new Stack<Card>();
 
     public int maxLength;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (GameObject gameObject in cards)
-        {
-            if (gameObject.GetComponent<CardInterface>() == null)
-            {
-                throw new System.NotImplementedException();
-            }
-        }
 
         initDeck();
     }
@@ -30,21 +24,27 @@ public class Deck : MonoBehaviour
         if (deck.Count == 0)
         {
             print("deck is empty");
+
             shuffle();
+
+            // this is a hotfix
+            // the shuffle method should be used
+            //initDeck();
         }
     }
 
-    public GameObject dealCard()
+    public Card dealCard()
     {
-        GameObject card = deck.Pop();
+        BattleManager battle = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
+        Card card = deck.Pop();
         discardPile.Push(card);
 
         return card;
     }
 
-    public GameObject[] dealCards(int numCards)
+    public Card[] dealCards(int numCards)
     {
-        List<GameObject> dealtCards = new List<GameObject>();
+        List<Card> dealtCards = new List<Card>();
 
         for (int i = 0; i < numCards; i++)
         {
@@ -57,13 +57,13 @@ public class Deck : MonoBehaviour
     // Initialises the deck stack by inserting all cards in a random order
     void initDeck()
     {
-        List<GameObject> cardsCopy = new List<GameObject>(cards);
+        List<Card> cardsCopy = new List<Card>(cards);
 
         for (int i = 0; i < cards.Count; i++)
         {
             int randIndex = (int)(Random.value * 100) % cardsCopy.Count;
 
-            deck.Push(cardsCopy[randIndex]);
+            deck.Push(Instantiate(cardsCopy[randIndex]));
 
             cardsCopy.RemoveAt(randIndex);
         }
@@ -74,12 +74,19 @@ public class Deck : MonoBehaviour
     // player's cards in hand
     public void shuffle()
     {
-        List<GameObject> cardsToShuffle = new List<GameObject>();
-        cardsToShuffle.AddRange(deck);
-        cardsToShuffle.AddRange(discardPile);
+        List<Card> cardsToShuffle = new List<Card>();
+        if (deck.Count > 0)
+        {
+            cardsToShuffle.AddRange(deck);
+            deck.Clear();
+        }
+            
 
-        deck.Clear();
-        discardPile.Clear();
+        if (discardPile.Count > 0)
+        {
+            cardsToShuffle.AddRange(discardPile);
+            discardPile.Clear();
+        }
 
         int size = cardsToShuffle.Count;
 
@@ -93,11 +100,8 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public bool discardCard(GameObject card)
+    public bool discardCard(Card card)
     {
-        if (card.GetComponent<CardInterface>() == null)
-            return false;
-
         discardPile.Push(card);
 
         return true;
@@ -105,7 +109,7 @@ public class Deck : MonoBehaviour
 
 
     // returns the card on the top of the deck
-    public GameObject getNextCard()
+    public Card getNextCard()
     {
         if (deck.Count == 0)
         {

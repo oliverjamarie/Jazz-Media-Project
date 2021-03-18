@@ -24,14 +24,18 @@ public class Enemy : MonoBehaviour
     public void enemyPlay()
     {
 
-        GameObject card = deck.dealCard();
-        GameObject cardGO = Instantiate(card);
+        Card card = deck.dealCard();
 
-        cardGO.GetComponent<CardInterface>().effect(unit, battleManager.playerUnit);
-        Destroy(cardGO);
+        card.effect(unit, battleManager.playerUnit);
+        deck.discardCard(card);
+
+        //GameObject cardGO = Instantiate(card);
+
+        //cardGO.GetComponent<CardInterface>().effect(unit, battleManager.playerUnit);
+        //Destroy(cardGO);
     }
 
-    public GameObject getNextMove()
+    public Card getNextMove()
     {
         return deck.getNextCard();
     }
