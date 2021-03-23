@@ -80,10 +80,7 @@ public class BattleManager : MonoBehaviour
 
         if (playerUnit.numMovesRemaining <= 0){
             gameState = BattleState.Enemy_Turn;
-            print("No moves remaining");
             playerUnit.numMovesRemaining = playerUnit.maxNumMoves;
-
-            print("Number of cards in hand " + player.getCurrHandSize());
         }
     }
 

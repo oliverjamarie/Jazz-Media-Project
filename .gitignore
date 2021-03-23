@@ -22,6 +22,8 @@
 # Visual Studio cache directory
 .vs/
 
+*.avi
+
 # Gradle cache directory
 .gradle/
 

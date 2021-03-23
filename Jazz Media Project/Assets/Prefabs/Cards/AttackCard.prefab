@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 125e956174a9c4a8091daa2757486737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 1
+  costText: {fileID: 6934826978494395151}
+  battleManager: {fileID: 0}
+  cardTitle: Attack Card
   damage: 1
 --- !u!1001 &1568563868500251483
 PrefabInstance:
@@ -35,6 +39,10 @@ PrefabInstance:
     - target: {fileID: 2087646636844423549, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_Text
       value: Basic Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2087646636844423549, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2087646638222542021, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_Color.b
@@ -136,7 +144,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -4007478716690192151, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
 --- !u!1 &665520134952277917 stripped
 GameObject:

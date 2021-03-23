@@ -21,7 +21,8 @@ public class DropHandler : MonoBehaviour, IDropHandler
         bool canPlay = false;
 
         DragHandler drag = eventData.pointerDrag.GetComponent<DragHandler>();
-        CardInterface card = eventData.pointerDrag.GetComponent<CardInterface>();
+        //CardInterface card = eventData.pointerDrag.GetComponent<CardInterface>();
+        Card card = eventData.pointerDrag.GetComponent<Card>();
 
         if (drag.parentToReturnTo == this.transform)
         {
@@ -39,8 +40,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
             if (battleManager.player.playCard(eventData.pointerDrag.gameObject) == true)
             {
-                cardPlayed.text = cardPlayedInitialString + "\t" +
-                    card.getCardTitle().text + "\t\t(" + card.getCardDesc().text + ")";
+                cardPlayed.text = cardPlayedInitialString + "\t" + card.name;
 
                 Destroy(eventData.pointerDrag.gameObject);
 
@@ -48,7 +48,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
             }
             else
             {
-                cardPlayed.text = "Cannot play " + card.getCardTitle();
+                cardPlayed.text = "Cannot play " + card.name;
             } 
             
         }
