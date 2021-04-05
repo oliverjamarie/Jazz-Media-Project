@@ -37,35 +37,48 @@ public class BattleManager : MonoBehaviour
     {
         gameState = BattleState.Start;
         setupBattle();
-        
+
     }
 
-    void Update(){
-        if (playerUnit.currHP <= 0){ // Player is dead
+    void Update()
+    {
+        if (playerUnit.currHP <= 0)
+        { // Player is dead
             print(playerUnit.unitName + " is dead");
             gameState = BattleState.Lost;
             enabled = false;
             Destroy(playerGO);
         }
-        else if (enemyUnit.currHP <= 0){ // Enemy is Dead
+        else if (enemyUnit.currHP <= 0)
+        { // Enemy is Dead
             print(enemyUnit.unitName + " is dead");
-            gameState= BattleState.Won;
+            gameState = BattleState.Won;
             enabled = false;
             Destroy(enemyGO);
         }
-        else{
-            if (gameState == BattleState.Player_Turn){ // Player's Turn
+        else
+        {
+            if (gameState == BattleState.Player_Turn)
+            { // Player's Turn
                 battlePlayerTurn();
             }
-            else if (gameState == BattleState.Enemy_Turn){// Enemy's Turn
+            else if (gameState == BattleState.Enemy_Turn)
+            {// Enemy's Turn
                 battleEnemyTurn();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print("SPACEBAR PRESSED");
+            switchHand();
+        }
     }
 
-    void setupBattle(){
+    void setupBattle()
+    {
 
-        playerPrefab.GetComponent<Player>().hand = playerHand;
+        playerPrefab.GetComponent<Player>().handTransform = playerHand;
         playerGO = Instantiate(playerPrefab, playerSpawnPoint);
         playerUnit = playerGO.GetComponent<Unit>();
         player = playerGO.GetComponent<Player>();
@@ -76,21 +89,24 @@ public class BattleManager : MonoBehaviour
         gameState = BattleState.Player_Turn;
     }
 
-    void battlePlayerTurn(){
+    void battlePlayerTurn()
+    {
 
-        if (playerUnit.numMovesRemaining <= 0){
+        if (playerUnit.numMovesRemaining <= 0)
+        {
             gameState = BattleState.Enemy_Turn;
             playerUnit.numMovesRemaining = playerUnit.maxNumMoves;
         }
     }
 
-    void battleEnemyTurn(){
+    void battleEnemyTurn()
+    {
         enemyGO.GetComponent<Enemy>().enemyPlay();
 
         playerUnit.initTurn();
 
         gameState = BattleState.Player_Turn;
-        
+
     }
 
     public void DealCardBtnListen()
@@ -99,5 +115,38 @@ public class BattleManager : MonoBehaviour
         {
             player.DealCard();
         }
+    }
+
+    public void switchHand()
+    {
+        if (gameState == BattleState.Player_Turn)
+        {
+            GameObject[] playerCards = GameObject.FindGameObjectsWithTag("PlayerCard");
+            Transform trans = GameObject.FindWithTag("AlternateHand").transform;
+
+            foreach (GameObject obj in playerCards)
+            {
+                obj.transform.SetParent(trans);
+            }
+
+
+            // This is only for testing purposes
+            gameState = BattleState.Player_Champ_Turn;
+        }
+        else if (gameState == BattleState.Player_Champ_Turn)
+        {
+            GameObject[] playerCards = GameObject.FindGameObjectsWithTag("PlayerCard");
+            Transform trans = GameObject.FindWithTag("Hand").transform;
+
+            foreach (GameObject obj in playerCards)
+            {
+                obj.transform.SetParent(trans);
+            }
+
+
+            // This is only for testing purposes
+            gameState = BattleState.Player_Turn;
+        }
+
     }
 }
