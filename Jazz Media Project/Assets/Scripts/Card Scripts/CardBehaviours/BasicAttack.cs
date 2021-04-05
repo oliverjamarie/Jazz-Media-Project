@@ -9,7 +9,7 @@ public class BasicAttack : Card
 
     public override void effect(Unit playedBy, Unit target)
     {
-        playedBy.attack(target, damage);
+        target.takeDamage(damage);
     }
 
 }
