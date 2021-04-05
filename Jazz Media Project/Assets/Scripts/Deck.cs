@@ -6,16 +6,19 @@ using UnityEngine.UI;
 public class Deck : MonoBehaviour 
 {
     public List<Card> cards = new List<Card>();
+    public string tagName;
     List<GameObject> expendedCards = new List<GameObject>();
     Stack<Card> deck = new Stack<Card>();
     Stack<Card> discardPile = new Stack<Card>();
+    Transform deckTransform;
+    
 
     public int maxLength;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        deckTransform = GameObject.FindGameObjectWithTag(tagName).transform;
         initDeck();
     }
 
@@ -35,7 +38,7 @@ public class Deck : MonoBehaviour
 
     public Card dealCard()
     {
-        BattleManager battle = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
+        // BattleManager battle = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
         Card card = deck.Pop();
         discardPile.Push(card);
 
@@ -64,6 +67,7 @@ public class Deck : MonoBehaviour
             int randIndex = (int)(Random.value * 100) % cardsCopy.Count;
 
             deck.Push(Instantiate(cardsCopy[randIndex]));
+            deck.Peek().transform.SetParent(deckTransform);
 
             cardsCopy.RemoveAt(randIndex);
         }

@@ -10,6 +10,7 @@ public class BasicDefend : Card
     public override void effect(Unit playedBy, Unit target)
     {
         playedBy.defense += defenseValue + playedBy.defensePts;
+        print(playedBy.defense + "\t" + defenseValue + "\t" + playedBy.defensePts);
     }
 
 }

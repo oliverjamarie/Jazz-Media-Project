@@ -40,7 +40,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
             if (battleManager.player.playCard(eventData.pointerDrag.gameObject) == true)
             {
-                cardPlayed.text = cardPlayedInitialString + "\t" + card.name;
+                cardPlayed.text = cardPlayedInitialString + "\t" + card.cardTitle;
 
                 Destroy(eventData.pointerDrag.gameObject);
 
@@ -48,7 +48,7 @@ public class DropHandler : MonoBehaviour, IDropHandler
             }
             else
             {
-                cardPlayed.text = "Cannot play " + card.name;
+                cardPlayed.text = "Cannot play " + card.cardTitle;
             } 
             
         }

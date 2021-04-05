@@ -45,6 +45,7 @@ public class Unit : MonoBehaviour
     public void initTurn(){
         print("Name:\t" + unitName + "\tCurrent HP:\t" + currHP
             + "\tCurrent Defense:\t" + defense
+            + "\tDefense Modifier:\t" + defensePts
             + "\tNumber of moves:\t" + maxNumMoves
             + "\tAttack Modifier:\t" + attackPts);
         if (usesStamina == true){
@@ -54,21 +55,21 @@ public class Unit : MonoBehaviour
         numMovesRemaining = maxNumMoves;
     }
 
-    public void attack(Unit target, int damage){
-        print(unitName + " is attacking with " + attackPts + " base attack points" );
-        target.takeDamage(attackPts + damage);
-        numMovesRemaining -= 1;
-    }
+    //public void attack(Unit target, int damage){
+    //    print(unitName + " is attacking with " + attackPts + " base attack points" );
+    //    target.takeDamage(attackPts + damage);
+    //    numMovesRemaining -= 1;
+    //}
 
-    public void defend(){
-        print(unitName + " is defending");
-        defense += defensePts;
+    //public void defend(){
+    //    print(unitName + " is defending");
+    //    defense += defensePts;
       
-        numMovesRemaining -= 1;
+    //    numMovesRemaining -= 1;
 
-    }
+    //}
 
-    void takeDamage(int damagePts){
+    public void takeDamage(int damagePts){
         print(unitName + " is taking " + damagePts + " damage. Defence: " + defense);
         currHP -= damagePts + defense;
 
@@ -83,11 +84,5 @@ public class Unit : MonoBehaviour
         {
             currHP = 0;
         }
-    }
-
-    public void taunt(){
-        print(unitName + " is taunting");
-        maxNumMoves += 1;
-        numMovesRemaining = 0;
     }
 }

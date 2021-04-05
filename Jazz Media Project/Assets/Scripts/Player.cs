@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    
+    public GameObject handTransform;
+    public int maxHandSize, initialHandSize;
+    public List<Card> hand;
+
+    int currHandSize;
     BattleManager battleManager;
-    public GameObject hand;
     Unit unit;
     Deck deck;
-    public int maxHandSize, initialHandSize;
-    int currHandSize;
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,11 +31,12 @@ public class Player : MonoBehaviour
 
         currHandSize = initialHandSize;
 
-        Card[] cards = deck.dealCards(initialHandSize);
-        
-        foreach (Card card in cards)
+        hand = new List<Card>(deck.dealCards(initialHandSize));
+
+        foreach(Card card in hand)
         {
-            Instantiate(card, hand.transform);
+            card.transform.SetParent(handTransform.transform);
+            card.tag = "PlayerCard";
         }
         
     }
@@ -46,7 +52,7 @@ public class Player : MonoBehaviour
         if (currHandSize <= 0 && battleManager.gameState == BattleState.Player_Turn)
         {
             Card card = deck.dealCard();
-            Instantiate(card, hand.transform);
+            Instantiate(card, handTransform.transform);
             currHandSize++;
         }
     }
@@ -57,7 +63,7 @@ public class Player : MonoBehaviour
             && battleManager.gameState == BattleState.Player_Turn)
         {
             Card card = deck.dealCard();
-            Instantiate(card, hand.transform);
+            Instantiate(card, handTransform.transform);
             currHandSize++;
             unit.numMovesRemaining--;
         }
