@@ -101,8 +101,7 @@ MonoBehaviour:
   - {fileID: 7825170679286644221, guid: 195e54e17ecdc4ea9af129643271b4eb, type: 3}
   - {fileID: 7825170679286644221, guid: 195e54e17ecdc4ea9af129643271b4eb, type: 3}
   - {fileID: 7825170679286644221, guid: 195e54e17ecdc4ea9af129643271b4eb, type: 3}
-  tagName: PlayerDeck
-  maxLength: 3
+  maxLength: 0
 --- !u!114 &-686295392898723525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,11 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2770f9b4c29b4004b1f0fe0ee87495e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handTransform: {fileID: 0}
+  hand: {fileID: 0}
   maxHandSize: 8
   initialHandSize: 3
-  hand:
-  - {fileID: 0}
 --- !u!95 &1192864574126378266
 Animator:
   serializedVersion: 3

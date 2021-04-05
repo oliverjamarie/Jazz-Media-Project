@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public abstract class Card : MonoBehaviour
 {
     public int cost = 1;
+    public Text costText;
     public BattleManager battleManager;
     public string cardTitle;
 
@@ -13,7 +14,7 @@ public abstract class Card : MonoBehaviour
     void Start()
     {
         battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
-        GetComponent<RectTransform>().localScale = Vector3.one;
+        costText.text = cost.ToString();
     }
     
     abstract public void effect(Unit playedBy, Unit target);
