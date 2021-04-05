@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cost: 1
-  costText: {fileID: 4250746184091172163}
   battleManager: {fileID: 0}
   cardTitle: Prepared Attack
   modifier: 1
@@ -31,7 +30,23 @@ PrefabInstance:
     - target: {fileID: -4007478716690192151, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: cardCostText
       value: 
-      objectReference: {fileID: 4250746184091172163}
+      objectReference: {fileID: 0}
+    - target: {fileID: 540954512595419531, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: m_FlexibleWidth
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 540954512595419531, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: m_FlexibleHeight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 540954512595419531, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: m_PreferredWidth
+      value: 220
+      objectReference: {fileID: 0}
+    - target: {fileID: 540954512595419531, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: m_PreferredHeight
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 2087646636448556455, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_Text
       value: Increase your attack modififer by 1 for the rest of the game
@@ -40,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: Prepared Attack
       objectReference: {fileID: 0}
+    - target: {fileID: 2087646638222542021, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b44d1726b2990481284c4d7a03981a53, type: 3}
     - target: {fileID: 2087646638222542022, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_Name
       value: PreparedAttackCard
@@ -74,11 +93,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2087646638222542023, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 220
       objectReference: {fileID: 0}
     - target: {fileID: 2087646638222542023, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 2087646638222542023, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_LocalPosition.x
@@ -135,14 +154,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2087646638222542022, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
   m_PrefabInstance: {fileID: 5693803097769745687}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4250746184091172163 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8501068635304648788, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
-  m_PrefabInstance: {fileID: 5693803097769745687}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
