@@ -63,8 +63,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: Enemy
-  maxHP: 100
-  currHP: 100
+  maxHP: 20
+  currHP: 20
   maxStamina: 3
   maxNumMoves: 1
   numMovesRemaining: 1
