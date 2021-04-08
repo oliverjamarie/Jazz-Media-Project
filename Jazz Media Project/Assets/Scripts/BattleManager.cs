@@ -113,6 +113,11 @@ public class BattleManager : MonoBehaviour
     {
         if (gameState == BattleState.Player_Turn)
         {
+            if (player == null)
+            {
+                print("PLAYER IS NULL");
+            }
+
             player.DealCard();
         }
     }
@@ -137,10 +142,12 @@ public class BattleManager : MonoBehaviour
         {
             GameObject[] playerCards = GameObject.FindGameObjectsWithTag("PlayerCard");
             Transform trans = GameObject.FindWithTag("Hand").transform;
-
+            Transform discardPileTrans = GameObject.FindGameObjectWithTag("DiscardPile").transform;
             foreach (GameObject obj in playerCards)
             {
-                obj.transform.SetParent(trans);
+
+                if (obj.transform.IsChildOf(discardPileTrans) == false)
+                    obj.transform.SetParent(trans);
             }
 
 
