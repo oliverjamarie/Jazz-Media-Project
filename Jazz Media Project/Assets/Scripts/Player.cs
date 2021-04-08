@@ -62,8 +62,11 @@ public class Player : MonoBehaviour
         if (currHandSize <= maxHandSize && unit.numMovesRemaining > 0
             && battleManager.gameState == BattleState.Player_Turn)
         {
-            Card card = deck.dealCard();
-            Instantiate(card, handTransform.transform);
+            //Card card = deck.dealCard();
+            //Instantiate(card, handTransform.transform);
+
+            deck.dealCard().transform.SetParent(handTransform.transform);
+
             currHandSize++;
             unit.numMovesRemaining--;
         }
