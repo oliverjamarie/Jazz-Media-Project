@@ -14,6 +14,10 @@ TagManager:
   - PlayerCard
   - CreatureCard
   - EnemyCard
+  - DiscardPile
+  - ExpendedPile
+  - PlayerUI
+  - EnemyUI
   layers:
   - Default
   - TransparentFX
