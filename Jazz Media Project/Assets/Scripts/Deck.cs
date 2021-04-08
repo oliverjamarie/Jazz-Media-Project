@@ -39,7 +39,9 @@ public class Deck : MonoBehaviour
     public Card dealCard()
     {
         // BattleManager battle = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
-        Card card = deck.Pop();
+        Card card;
+        print(deck.Count);
+        card = deck.Pop();
         discardPile.Push(card);
 
         return card;
@@ -79,19 +81,28 @@ public class Deck : MonoBehaviour
     public void shuffle()
     {
         List<Card> cardsToShuffle = new List<Card>();
+
+        string cardTag = "";
+        Transform hand = GameObject.FindGameObjectWithTag("Hand").transform;
+
+        if (tagName == "PlayerDeck")
+        {
+            cardTag = "PlayerDeck";
+        }
+        else if (tagName == "AlternateDeck")
+        {
+            cardTag = "AlternateDeck";
+        }
+        else if (tagName == "EnemyDeck")
+        {
+            cardTag = "EnemyDeck";
+        }
+
         if (deck.Count > 0)
-        {
-            cardsToShuffle.AddRange(deck);
-            deck.Clear();
-        }
-            
-
+            cardsToShuffle.AddRange(deck.ToArray());
         if (discardPile.Count > 0)
-        {
-            cardsToShuffle.AddRange(discardPile);
-            discardPile.Clear();
-        }
-
+            cardsToShuffle.AddRange(discardPile.ToArray());
+        
         int size = cardsToShuffle.Count;
 
         for (int i = 0; i < size; i++)
