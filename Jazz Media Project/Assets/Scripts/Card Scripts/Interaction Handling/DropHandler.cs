@@ -7,14 +7,6 @@ using UnityEngine.UI;
 public class DropHandler : MonoBehaviour, IDropHandler
 {
     public BattleManager battleManager;
-    public Text cardPlayed;
-    string cardPlayedInitialString;
-
-    public void Start()
-    {
-        cardPlayedInitialString = cardPlayed.text;
-        print(cardPlayedInitialString);
-    }
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -40,16 +32,10 @@ public class DropHandler : MonoBehaviour, IDropHandler
 
             if (battleManager.player.playCard(eventData.pointerDrag.gameObject) == true)
             {
-                cardPlayed.text = cardPlayedInitialString + "\t" + card.cardTitle;
+                Transform trans = GameObject.FindGameObjectWithTag("DiscardPile").transform;
 
-                Destroy(eventData.pointerDrag.gameObject);
-
-                drag.parentToReturnTo = this.transform;
+                drag.parentToReturnTo = trans;
             }
-            else
-            {
-                cardPlayed.text = "Cannot play " + card.cardTitle;
-            } 
             
         }
 
