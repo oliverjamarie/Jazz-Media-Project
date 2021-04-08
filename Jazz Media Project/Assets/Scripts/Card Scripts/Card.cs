@@ -15,6 +15,11 @@ public abstract class Card : MonoBehaviour
         battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
         GetComponent<RectTransform>().localScale = Vector3.one;
     }
-    
+
+    private void Update()
+    {
+        GetComponent<RectTransform>().localScale = Vector3.one;
+    }
+
     abstract public void effect(Unit playedBy, Unit target);
 }
