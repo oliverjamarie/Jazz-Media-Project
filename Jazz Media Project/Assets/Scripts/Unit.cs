@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Unit : MonoBehaviour
 {
@@ -40,6 +42,9 @@ public class Unit : MonoBehaviour
     void Start(){
         currHP = maxHP;
         currStamina = maxStamina;
+
+        //ui = Instantiate(uiPrefab);
+        //ui.transform.SetParent(GameObject.Find("Canvas").transform);
     }
 
     public void initTurn(){
@@ -54,20 +59,6 @@ public class Unit : MonoBehaviour
 
         numMovesRemaining = maxNumMoves;
     }
-
-    //public void attack(Unit target, int damage){
-    //    print(unitName + " is attacking with " + attackPts + " base attack points" );
-    //    target.takeDamage(attackPts + damage);
-    //    numMovesRemaining -= 1;
-    //}
-
-    //public void defend(){
-    //    print(unitName + " is defending");
-    //    defense += defensePts;
-      
-    //    numMovesRemaining -= 1;
-
-    //}
 
     public void takeDamage(int damagePts){
         print(unitName + " is taking " + damagePts + " damage. Defence: " + defense);
@@ -85,4 +76,8 @@ public class Unit : MonoBehaviour
             currHP = 0;
         }
     }
+
+    
+
+    
 }
