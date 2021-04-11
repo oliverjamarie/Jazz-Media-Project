@@ -65,12 +65,12 @@ public class BattleManager : MonoBehaviour
             {
                 print("Champion is dead");
                 Destroy(champGO);
+                print(champGO.name);
             }
             else if (champUnit.currStamina <= 0)
             {
                 print("Champion rand out of stamina");
                 Destroy(champGO);
-                champInPlay = false;
             }
             
         }
@@ -87,6 +87,7 @@ public class BattleManager : MonoBehaviour
         {
             battleChampTurn();
         }
+
 
     }
 
@@ -112,7 +113,7 @@ public class BattleManager : MonoBehaviour
 
     public void setupChamp(GameObject champPrefab)
     {
-        champGO = Instantiate(champPrefab);
+        champGO = Instantiate(champPrefab, champSpawnPoint.transform);
         champUnit = champGO.GetComponent<Unit>();
         GameObject.FindGameObjectWithTag("ChampUI").GetComponent<UnitUI>().enabled = true;
         champGO.tag = "Champion";
@@ -123,8 +124,6 @@ public class BattleManager : MonoBehaviour
     {
         Transform alt = GameObject.FindGameObjectWithTag("AlternateHand").transform;
         GameObject[] playerCards = GameObject.FindGameObjectsWithTag("PlayerCard");
-
-        
 
         if (champInPlay)
         {
@@ -143,6 +142,16 @@ public class BattleManager : MonoBehaviour
                 if (card.transform.IsChildOf(playerHand.transform))
                 {
                     card.transform.SetParent(alt);
+                }
+            }
+        }
+        else
+        {
+            foreach (GameObject card in playerCards)
+            {
+                if (card.transform.IsChildOf(alt))
+                {
+                    card.transform.SetParent(playerHand.transform);
                 }
             }
         }
@@ -197,7 +206,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (champUnit.numMovesRemaining <= 0)
+        if (champUnit.numMovesRemaining <= 0 || champInPlay == false)
         {
             playerUnit.initTurn();
             gameState = BattleState.Player_Turn;
