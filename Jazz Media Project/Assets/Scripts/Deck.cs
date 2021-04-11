@@ -11,6 +11,7 @@ public class Deck : MonoBehaviour
     Stack<Card> deck = new Stack<Card>();
     Stack<Card> discardPile = new Stack<Card>();
     Transform deckTransform;
+    Unit unit;
     
 
     public int maxLength;
@@ -19,6 +20,8 @@ public class Deck : MonoBehaviour
     void Start()
     {
         deckTransform = GameObject.FindGameObjectWithTag(tagName).transform;
+        unit = GetComponent<Unit>();
+
         initDeck();
     }
 
@@ -62,6 +65,20 @@ public class Deck : MonoBehaviour
     void initDeck()
     {
         List<Card> cardsCopy = new List<Card>(cards);
+        string cardTag;
+
+        if (unit.unitType == Unit.unitTypeEnum.Player)
+        {
+            cardTag = "PlayerCard";
+        }
+        else if (unit.unitType == Unit.unitTypeEnum.Champion)
+        {
+            cardTag = "ChampCard";
+        }
+        else
+        {
+            cardTag = "EnemyCard";
+        }
 
         for (int i = 0; i < cards.Count; i++)
         {
@@ -69,7 +86,7 @@ public class Deck : MonoBehaviour
 
             deck.Push(Instantiate(cardsCopy[randIndex]));
             deck.Peek().transform.SetParent(deckTransform);
-
+            deck.Peek().tag = cardTag;
             cardsCopy.RemoveAt(randIndex);
         }
     }
