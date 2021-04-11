@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3240275810153071266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8094784094841948570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2770f9b4c29b4004b1f0fe0ee87495e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handTransform: {fileID: 0}
+  maxHandSize: 5
+  initialHandSize: 5
+  hand: []
+--- !u!1001 &6043799856696923770
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2560737076323770336, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_Name
+      value: KitsuneChamp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3256793748424352648, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7145027392198499868, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795272992635150913, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: unitName
+      value: Kitsune
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795272992635150913, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: unitType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795272992635150913, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: maxStamina
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795272992635150913, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: currStamina
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795272992635150913, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+      propertyPath: usesStamina
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7577751816594542911, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+--- !u!1 &8094784094841948570 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2560737076323770336, guid: af82707a4b8c04a7ab0ef876c6cafe7c, type: 3}
+  m_PrefabInstance: {fileID: 6043799856696923770}
+  m_PrefabAsset: {fileID: 0}
