@@ -15,6 +15,8 @@ public enum BattleState {
 public class BattleManager : MonoBehaviour
 {
 
+    public GameObject playerUI, champUI;
+
     public GameObject playerPrefab;
     public GameObject playerGO;
     public GameObject playerHand;
@@ -39,6 +41,9 @@ public class BattleManager : MonoBehaviour
     {
         gameState = BattleState.Start;
         setupBattle();
+        playerUI = GameObject.FindGameObjectWithTag("PlayerUI");
+        champUI = GameObject.FindGameObjectWithTag("ChampUI");
+        champUI.SetActive(false);
     }
 
     void Update()
@@ -115,7 +120,8 @@ public class BattleManager : MonoBehaviour
     {
         champGO = Instantiate(champPrefab, champSpawnPoint.transform);
         champUnit = champGO.GetComponent<Unit>();
-        GameObject.FindGameObjectWithTag("ChampUI").GetComponent<UnitUI>().enabled = true;
+        champUI.SetActive(true);
+        champUI.GetComponent<UnitUI>().enabled = true;
         champGO.tag = "Champion";
         champInPlay = true;
     }
@@ -206,7 +212,7 @@ public class BattleManager : MonoBehaviour
             }
         }
 
-        if (champUnit.numMovesRemaining <= 0 || champInPlay == false)
+        if (champUnit.numMovesRemaining <= 0)
         {
             playerUnit.initTurn();
             gameState = BattleState.Player_Turn;
