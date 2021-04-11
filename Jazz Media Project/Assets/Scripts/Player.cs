@@ -29,28 +29,19 @@ public class Player : MonoBehaviour
             throw new System.NotSupportedException();
         }
 
+        if (handTransform == null)
+        {
+            handTransform = GameObject.FindGameObjectWithTag("Hand");
+        }
+
         currHandSize = initialHandSize;
 
         hand = new List<Card>(deck.dealCards(initialHandSize));
-
-        string cardTag;
-
-        if (tag == "Champion")
-        {
-            cardTag = "ChampCard";
-            handTransform = GameObject.FindGameObjectWithTag("AlternateHand");
-        }
-        else
-        {
-            cardTag = "PlayerCard";
-            handTransform = GameObject.FindGameObjectWithTag("Hand");
-        }
             
 
         foreach(Card card in hand)
         {
             card.transform.SetParent(handTransform.transform);
-            card.tag = cardTag;
         }
         
     }
