@@ -87,6 +87,7 @@ public class Deck : MonoBehaviour
             deck.Push(Instantiate(cardsCopy[randIndex]));
             deck.Peek().transform.SetParent(deckTransform);
             deck.Peek().tag = cardTag;
+
             cardsCopy.RemoveAt(randIndex);
         }
     }
