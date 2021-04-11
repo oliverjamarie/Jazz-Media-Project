@@ -8,6 +8,7 @@ public abstract class Card : MonoBehaviour
     public int cost = 1;
     public BattleManager battleManager;
     public string cardTitle;
+    public bool isChampCard;
 
     // Start is called before the first frame update
     void Start()
