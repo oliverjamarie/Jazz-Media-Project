@@ -40,7 +40,6 @@ public class Deck : MonoBehaviour
     {
         // BattleManager battle = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
         Card card;
-        print(deck.Count);
         card = deck.Pop();
         discardPile.Push(card);
 
