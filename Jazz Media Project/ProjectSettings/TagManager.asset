@@ -12,12 +12,14 @@ TagManager:
   - AlternateDeck
   - EnemyDeck
   - PlayerCard
-  - CreatureCard
   - EnemyCard
   - DiscardPile
   - ExpendedPile
   - PlayerUI
   - EnemyUI
+  - ChampUI
+  - Champion
+  - ChampCard
   layers:
   - Default
   - TransparentFX
