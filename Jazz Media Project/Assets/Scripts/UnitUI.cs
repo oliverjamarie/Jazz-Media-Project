@@ -11,9 +11,10 @@ public class UnitUI : MonoBehaviour
     Unit unit;
 
     //public GameObject numMovesRemainingGO, attackPtsGO, defStatsGO;
-    public TextMeshProUGUI numMovesRemaining, attackPts, defStats;
+    public TextMeshProUGUI numMovesRemaining, attackPts, defStats, currStanima;
     public Slider healthBar;
-    
+
+    bool usesStanima;
 
     public void Start()
     {
@@ -27,6 +28,8 @@ public class UnitUI : MonoBehaviour
         {
             return;
         }
+
+        usesStanima = false;
 
         getUnit();
 
@@ -53,14 +56,40 @@ public class UnitUI : MonoBehaviour
         setText();
     }
 
-   void getUnit()
+    public void Awake()
+    {
+        battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
+
+        if (battleManager == null)
+        {
+            return;
+        }
+
+        getUnit();
+
+        if (unit == null)
+        {
+            return;
+        }
+
+        healthBar.maxValue = unit.maxHP;
+
+        setText();
+    }
+
+    void getUnit()
     {
         if (tag == "PlayerUI")
             unit = battleManager.playerUnit;
         else if (tag == "EnemyUI")
             unit = battleManager.enemyUnit;
+        else if (tag == "ChampUI" && battleManager.champInPlay)
+        {
+            unit = battleManager.champUnit;
+            usesStanima = true;
+        }
         else
-            print("WTF");
+            enabled = false;
     }
 
     void setText()
@@ -68,5 +97,8 @@ public class UnitUI : MonoBehaviour
         numMovesRemaining.SetText(unit.numMovesRemaining.ToString());
         attackPts.SetText(unit.attackPts.ToString());
         defStats.SetText(unit.defense.ToString() + " | " + unit.defensePts.ToString()) ;
+
+        if (usesStanima)
+            currStanima.SetText(unit.currStamina.ToString());
     }
 }
