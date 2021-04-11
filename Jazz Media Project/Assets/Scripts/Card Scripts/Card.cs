@@ -8,6 +8,7 @@ public abstract class Card : MonoBehaviour
     public int cost = 1;
     public BattleManager battleManager;
     public string cardTitle;
+    public bool isChampCard;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +16,11 @@ public abstract class Card : MonoBehaviour
         battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
         GetComponent<RectTransform>().localScale = Vector3.one;
     }
-    
+
+    private void Update()
+    {
+        GetComponent<RectTransform>().localScale = Vector3.one;
+    }
+
     abstract public void effect(Unit playedBy, Unit target);
 }

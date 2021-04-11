@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class BasicDefend : Card
+public class KitsuneChampCard : Card
 {
-    public int defenseValue;
+    public GameObject kitsuneChampPrefab;
 
     public override void effect(Unit playedBy, Unit target)
     {
-        playedBy.defense += defenseValue + playedBy.defensePts;
+        battleManager.setupChamp(kitsuneChampPrefab);
     }
-
 }

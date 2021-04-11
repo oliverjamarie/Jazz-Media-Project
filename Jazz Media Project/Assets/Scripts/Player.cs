@@ -33,10 +33,24 @@ public class Player : MonoBehaviour
 
         hand = new List<Card>(deck.dealCards(initialHandSize));
 
+        string cardTag;
+
+        if (tag == "Champion")
+        {
+            cardTag = "ChampCard";
+            handTransform = GameObject.FindGameObjectWithTag("AlternateHand");
+        }
+        else
+        {
+            cardTag = "PlayerCard";
+            handTransform = GameObject.FindGameObjectWithTag("Hand");
+        }
+            
+
         foreach(Card card in hand)
         {
             card.transform.SetParent(handTransform.transform);
-            card.tag = "PlayerCard";
+            card.tag = cardTag;
         }
         
     }
@@ -62,8 +76,8 @@ public class Player : MonoBehaviour
         if (currHandSize <= maxHandSize && unit.numMovesRemaining > 0
             && battleManager.gameState == BattleState.Player_Turn)
         {
-            Card card = deck.dealCard();
-            Instantiate(card, handTransform.transform);
+            deck.dealCard().transform.SetParent(handTransform.transform);
+
             currHandSize++;
             unit.numMovesRemaining--;
         }

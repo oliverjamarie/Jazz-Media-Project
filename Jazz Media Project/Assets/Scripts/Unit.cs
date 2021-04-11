@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Unit : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class Unit : MonoBehaviour
     public int currHP;
 
     public int maxStamina;
-    private int currStamina;
+    public int currStamina;
 
     public int maxNumMoves;
     public int numMovesRemaining;
@@ -21,10 +23,11 @@ public class Unit : MonoBehaviour
 
     //public bool isTurn;
     public bool usesStamina;
+    public Player player;
 
     public enum unitTypeEnum{
         Player,
-        Creature,
+        Champion,
         Enemy
     }
 
@@ -40,6 +43,23 @@ public class Unit : MonoBehaviour
     void Start(){
         currHP = maxHP;
         currStamina = maxStamina;
+
+        if (unitType == unitTypeEnum.Champion)
+        {
+            usesStamina = true;
+        }
+
+        if (unitType == unitTypeEnum.Enemy)
+        {
+            player = null;
+        }
+        else
+        {
+            player = GetComponent<Player>();
+        }
+
+        //ui = Instantiate(uiPrefab);
+        //ui.transform.SetParent(GameObject.Find("Canvas").transform);
     }
 
     public void initTurn(){
@@ -48,26 +68,13 @@ public class Unit : MonoBehaviour
             + "\tDefense Modifier:\t" + defensePts
             + "\tNumber of moves:\t" + maxNumMoves
             + "\tAttack Modifier:\t" + attackPts);
+
         if (usesStamina == true){
             currStamina -=1; 
         }
 
         numMovesRemaining = maxNumMoves;
     }
-
-    //public void attack(Unit target, int damage){
-    //    print(unitName + " is attacking with " + attackPts + " base attack points" );
-    //    target.takeDamage(attackPts + damage);
-    //    numMovesRemaining -= 1;
-    //}
-
-    //public void defend(){
-    //    print(unitName + " is defending");
-    //    defense += defensePts;
-      
-    //    numMovesRemaining -= 1;
-
-    //}
 
     public void takeDamage(int damagePts){
         print(unitName + " is taking " + damagePts + " damage. Defence: " + defense);
@@ -84,5 +91,5 @@ public class Unit : MonoBehaviour
         {
             currHP = 0;
         }
-    }
+    }    
 }
