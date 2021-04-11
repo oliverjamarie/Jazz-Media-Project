@@ -22,15 +22,15 @@ public class DropHandler : MonoBehaviour, IDropHandler
             return;
         }
 
-        if (battleManager.gameState == BattleState.Player_Turn)
+        if (battleManager.gameState == BattleState.Player_Turn ||
+                battleManager.gameState == BattleState.Player_Champ_Turn)
         {
             canPlay = true;
         }
 
         if (drag != null && canPlay)
         {
-
-            if (battleManager.player.playCard(eventData.pointerDrag.gameObject) == true)
+            if (battleManager.getPlayer().playCard(eventData.pointerDrag.gameObject) == true)
             {
                 Transform trans = GameObject.FindGameObjectWithTag("DiscardPile").transform;
 
