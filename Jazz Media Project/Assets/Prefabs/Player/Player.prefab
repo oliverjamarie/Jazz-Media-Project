@@ -66,12 +66,14 @@ MonoBehaviour:
   maxHP: 10
   currHP: 10
   maxStamina: 3
+  currStamina: 0
   maxNumMoves: 1
   numMovesRemaining: 1
   defense: 0
   defensePts: 0
   attackPts: 0
   usesStamina: 0
+  player: {fileID: 0}
   unitType: 0
 --- !u!114 &1144958810704345861
 MonoBehaviour:
@@ -107,6 +109,7 @@ MonoBehaviour:
   - {fileID: -7745527012669407619, guid: 0af9db15857f44df4bf5ac9b58c8df0f, type: 3}
   - {fileID: -7745527012669407619, guid: 0af9db15857f44df4bf5ac9b58c8df0f, type: 3}
   tagName: PlayerDeck
+  kasaObakeCard: {fileID: 8971395646399407092, guid: d787dcde3f76d43ad9e8fe44b55ea7be, type: 3}
   maxLength: 3
 --- !u!114 &-686295392898723525
 MonoBehaviour:
@@ -125,6 +128,7 @@ MonoBehaviour:
   initialHandSize: 3
   hand:
   - {fileID: 0}
+  deck: {fileID: 0}
 --- !u!95 &1192864574126378266
 Animator:
   serializedVersion: 3
