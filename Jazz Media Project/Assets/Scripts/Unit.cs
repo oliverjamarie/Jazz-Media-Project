@@ -69,18 +69,22 @@ public class Unit : MonoBehaviour
             + "\tNumber of moves:\t" + maxNumMoves
             + "\tAttack Modifier:\t" + attackPts);
 
-        if (usesStamina == true){
-            currStamina -=1; 
-        }
+        //if (usesStamina == true){
+        //    currStamina -=1; 
+        //}
 
         numMovesRemaining = maxNumMoves;
     }
 
     public void takeDamage(int damagePts){
         print(unitName + " is taking " + damagePts + " damage. Defence: " + defense);
-        currHP -= damagePts + defense;
+        int damagePtsCpy = damagePts;
 
-        defense -= damagePts;
+        damagePts -= defense;
+
+        currHP -= damagePts;
+
+        defense -= damagePtsCpy;
 
         if (defense < 0)
         {
@@ -91,5 +95,13 @@ public class Unit : MonoBehaviour
         {
             currHP = 0;
         }
-    }    
+    }
+
+    public void endTurn()
+    {
+        if (usesStamina == true)
+        {
+            currStamina -= 1;
+        }
+    }
 }
