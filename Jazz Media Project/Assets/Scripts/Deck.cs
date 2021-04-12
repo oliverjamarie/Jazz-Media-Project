@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 public class Deck : MonoBehaviour 
 {
     public List<Card> cards = new List<Card>();
     public string tagName;
+    public Card kasaObakeCard;
     List<GameObject> expendedCards = new List<GameObject>();
     Stack<Card> deck = new Stack<Card>();
     Stack<Card> discardPile = new Stack<Card>();
@@ -21,6 +22,11 @@ public class Deck : MonoBehaviour
     {
         deckTransform = GameObject.FindGameObjectWithTag(tagName).transform;
         unit = GetComponent<Unit>();
+
+        if (SceneManager.GetActiveScene().buildIndex == 2 && unit.unitType == Unit.unitTypeEnum.Player)
+        {
+            cards.Add(kasaObakeCard);
+        }
 
         initDeck();
     }
