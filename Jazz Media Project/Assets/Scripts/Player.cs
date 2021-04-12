@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     int currHandSize;
     BattleManager battleManager;
     Unit unit;
-    Deck deck;
+    public Deck deck;
     
 
 
