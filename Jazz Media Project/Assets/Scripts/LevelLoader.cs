@@ -8,7 +8,6 @@ public class LevelLoader : MonoBehaviour
 {
     public Slider progress;
     public float timeMutli = 1.0f;
-     
 
     public void loadScene()
     {
@@ -38,13 +37,25 @@ public class LevelLoader : MonoBehaviour
 
     public void loadGameOverScene()
     {
-        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings);
+        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings -1);
 
     }
 
     public void loadMainMenuScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void loadNextScene()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 2)
+        {
+            loadMainMenuScene();
+        }
+        else
+        {
+            loadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
     
 
