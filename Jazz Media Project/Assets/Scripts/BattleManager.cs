@@ -35,6 +35,8 @@ public class BattleManager : MonoBehaviour
     public bool champInPlay;
 
     public BattleState gameState;
+    public LevelLoader loader;
+
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +50,13 @@ public class BattleManager : MonoBehaviour
 
     void Update()
     {
-        champInPlay = (champGO != null);
+        //if (champInPlay == false && GameObject.FindGameObjectWithTag("Champion") != null)
+        //{
+        //    print("heck");
+        //    Destroy(champGO);
+        //}
+
+        
 
         if (playerUnit.currHP <= 0)
         { // Player is dead
@@ -71,11 +79,15 @@ public class BattleManager : MonoBehaviour
                 print("Champion is dead");
                 Destroy(champGO);
                 print(champGO.name);
+                champInPlay = false;
+                champUI.SetActive(false);
             }
             else if (champUnit.currStamina <= 0)
             {
-                print("Champion rand out of stamina");
-                Destroy(champGO);
+                print("Champion ran out of stamina");
+                Destroy(GameObject.FindGameObjectWithTag("Champion"));
+                champInPlay = false;
+                champUI.SetActive(false);
             }
             
         }
@@ -92,13 +104,25 @@ public class BattleManager : MonoBehaviour
         {
             battleChampTurn();
         }
-
+        else if (!champInPlay && gameState == BattleState.Player_Champ_Turn)
+        {
+            print("howdy");
+            gameState = BattleState.Player_Turn;
+            battlePlayerTurn();
+        }
+        else if (gameState == BattleState.Lost)
+        {
+            loader.loadGameOverScene();
+        }
+        else if (gameState == BattleState.Won)
+        {
+            loader.loadNextScene();
+        }
 
     }
 
     void setupBattle()
     {
-
         playerPrefab.GetComponent<Player>().handTransform = playerHand;
         playerGO = Instantiate(playerPrefab, playerSpawnPoint);
         playerUnit = playerGO.GetComponent<Unit>();
@@ -120,7 +144,7 @@ public class BattleManager : MonoBehaviour
     {
         champGO = Instantiate(champPrefab, champSpawnPoint.transform);
         champUnit = champGO.GetComponent<Unit>();
-        champUI.SetActive(true);
+        //champUI.SetActive(true);
         champUI.GetComponent<UnitUI>().enabled = true;
         champGO.tag = "Champion";
         champInPlay = true;
@@ -128,6 +152,8 @@ public class BattleManager : MonoBehaviour
 
     void battlePlayerTurn()
     {
+        champUI.SetActive(false);
+        playerUI.SetActive(true);
         Transform alt = GameObject.FindGameObjectWithTag("AlternateHand").transform;
         GameObject[] playerCards = GameObject.FindGameObjectsWithTag("PlayerCard");
 
@@ -191,7 +217,8 @@ public class BattleManager : MonoBehaviour
 
     void battleChampTurn()
     {
-
+        champUI.SetActive(true);
+        playerUI.SetActive(false);
         Transform alt = GameObject.FindGameObjectWithTag("AlternateHand").transform;
         GameObject[] playerCards = GameObject.FindGameObjectsWithTag("PlayerCard");
         GameObject[] champCards = GameObject.FindGameObjectsWithTag("ChampCard");
@@ -215,16 +242,24 @@ public class BattleManager : MonoBehaviour
         if (champUnit.numMovesRemaining <= 0)
         {
             playerUnit.initTurn();
+            champUnit.endTurn();
             gameState = BattleState.Player_Turn;
         }
     }
 
     public void DealCardBtnListen()
     {
+        StartCoroutine(dealCard());
+    }
+
+    IEnumerator dealCard()
+    {
         if (gameState == BattleState.Player_Turn)
         {
             playerGO.GetComponent<Player>().DealCard();
         }
+
+        yield return null;
     }
 
     public Player getPlayer()
@@ -236,6 +271,7 @@ public class BattleManager : MonoBehaviour
 
         if (gameState == BattleState.Player_Champ_Turn)
         {
+            print(champUnit.player.getCurrHandSize());
             return champUnit.player;
         }
 
