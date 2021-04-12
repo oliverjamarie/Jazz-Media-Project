@@ -22,6 +22,11 @@ public class DropHandler : MonoBehaviour, IDropHandler
             return;
         }
 
+        if (battleManager == null)
+        {
+            battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
+        }
+
         if (battleManager.gameState == BattleState.Player_Turn ||
                 battleManager.gameState == BattleState.Player_Champ_Turn)
         {
