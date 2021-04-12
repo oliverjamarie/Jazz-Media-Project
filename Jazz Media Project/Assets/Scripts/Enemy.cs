@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public Text nextMove;
     Deck deck;
     Unit unit;
-
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -19,20 +19,26 @@ public class Enemy : MonoBehaviour
         deck = GetComponent<Deck>();
         unit = GetComponent<Unit>();
         battleManager = GameObject.FindGameObjectWithTag("Battle Manager").GetComponent<BattleManager>();
+        animator = GetComponent<Animator>();
     }
 
     public void enemyPlay()
     {
-
+        StartCoroutine(wait());
         Card card = deck.dealCard();
 
         card.effect(unit, battleManager.playerUnit);
         deck.discardCard(card);
+        print(card.name);
 
-        //GameObject cardGO = Instantiate(card);
+        animator.SetTrigger("Attack");
 
-        //cardGO.GetComponent<CardInterface>().effect(unit, battleManager.playerUnit);
-        //Destroy(cardGO);
+        
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1);
     }
 
     public Card getNextMove()
