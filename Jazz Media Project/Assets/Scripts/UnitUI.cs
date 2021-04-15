@@ -11,8 +11,10 @@ public class UnitUI : MonoBehaviour
     Unit unit;
 
     //public GameObject numMovesRemainingGO, attackPtsGO, defStatsGO;
-    public TextMeshProUGUI numMovesRemaining, attackPts, defStats, currStanima;
+    public TextMeshProUGUI numMovesRemaining, attackPts, defStats, currStanima, unitName;
     public Slider healthBar;
+    public Color color;
+    public Image healthbarFill;
 
     bool usesStanima;
 
@@ -27,6 +29,11 @@ public class UnitUI : MonoBehaviour
         if (battleManager == null)
         {
             return;
+        }
+
+        if (healthbarFill != null)
+        {
+            healthbarFill.color = color;
         }
 
         usesStanima = false;
@@ -97,6 +104,9 @@ public class UnitUI : MonoBehaviour
         numMovesRemaining.SetText(unit.numMovesRemaining.ToString());
         attackPts.SetText(unit.attackPts.ToString());
         defStats.SetText(unit.defense.ToString() + " | " + unit.defensePts.ToString()) ;
+
+        if (unitName != null)
+            unitName.SetText(unit.unitName);
 
         if (usesStanima)
             currStanima.SetText(unit.currStamina.ToString());
