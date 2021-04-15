@@ -278,7 +278,8 @@ public class BattleManager : MonoBehaviour
         {
             if (champInfo != null)
             {
-                Instantiate(champInfo);
+                GameObject info = Instantiate(champInfo);
+                info.transform.position = new Vector3(0f, 0f, 1f);
                 captureBtn.SetActive(true);
                 Destroy(enemyGO);
                 Destroy(playerGO);
@@ -289,8 +290,12 @@ public class BattleManager : MonoBehaviour
                 Destroy(GameObject.FindGameObjectWithTag("Tabletop"));
                 Destroy(GameObject.FindGameObjectWithTag("DealCardBtn"));
             }
+            else
+            {
+                loader.loadNextScene();
+            }
 
-            loader.loadNextScene();
+            
             
             enabled = false;
         }
