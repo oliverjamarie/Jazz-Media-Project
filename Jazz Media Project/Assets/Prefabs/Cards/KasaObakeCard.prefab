@@ -32,6 +32,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: KasaObakeCard
       objectReference: {fileID: 0}
+    - target: {fileID: 2087646638222542022, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
+      propertyPath: m_TagString
+      value: PlayerCard
+      objectReference: {fileID: 0}
     - target: {fileID: 2087646638222542023, guid: ad0515e3ba0154bb190f272b98c7ce75, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

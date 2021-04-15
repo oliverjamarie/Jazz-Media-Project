@@ -37,6 +37,9 @@ public class BattleManager : MonoBehaviour
     public BattleState gameState;
     public LevelLoader loader;
 
+    public GameObject champInfo;
+    public GameObject captureBtn;
+
 
     // Start is called before the first frame update
     void Start()
@@ -50,27 +53,15 @@ public class BattleManager : MonoBehaviour
 
     void Update()
     {
-        //if (champInPlay == false && GameObject.FindGameObjectWithTag("Champion") != null)
-        //{
-        //    print("heck");
-        //    Destroy(champGO);
-        //}
-
-        
-
         if (playerUnit.currHP <= 0)
         { // Player is dead
-            print(playerUnit.unitName + " is dead");
             gameState = BattleState.Lost;
-            enabled = false;
-            Destroy(playerGO);
+            endBattle();
         }
         else if (enemyUnit.currHP <= 0)
         { // Enemy is Dead
-            print(enemyUnit.unitName + " is dead");
             gameState = BattleState.Won;
-            enabled = false;
-            Destroy(enemyGO);
+            endBattle();
         }
         else if (champInPlay)
         {
@@ -110,14 +101,6 @@ public class BattleManager : MonoBehaviour
             gameState = BattleState.Player_Turn;
             battlePlayerTurn();
         }
-        else if (gameState == BattleState.Lost)
-        {
-            loader.loadGameOverScene();
-        }
-        else if (gameState == BattleState.Won)
-        {
-            loader.loadNextScene();
-        }
 
     }
 
@@ -133,6 +116,12 @@ public class BattleManager : MonoBehaviour
         gameState = BattleState.Player_Turn;
 
         champInPlay = false;
+
+        if (champInfo != null)
+        {
+            captureBtn = GameObject.Find("CaptureBtn");
+            captureBtn.SetActive(false);
+        }
 
         if (playerHand == null)
         {
@@ -279,5 +268,45 @@ public class BattleManager : MonoBehaviour
         return null;
     }
 
+    void endBattle()
+    {
+        if (gameState == BattleState.Lost)
+        {
+            loader.loadGameOverScene();
+        }
+        else if (gameState == BattleState.Won)
+        {
+            if (champInfo != null)
+            {
+                Instantiate(champInfo);
+                captureBtn.SetActive(true);
+                Destroy(enemyGO);
+                Destroy(playerGO);
+                Destroy(playerUI);
+                Destroy(champUI);
+                Destroy(GameObject.FindGameObjectWithTag("EnemyUI"));
+                Destroy(playerHand);
+                Destroy(GameObject.FindGameObjectWithTag("Tabletop"));
+                Destroy(GameObject.FindGameObjectWithTag("DealCardBtn"));
+            }
+
+            loader.loadNextScene();
+            
+            enabled = false;
+        }
+        else
+            return;
+    }
+
+    public void loadNextLevel()
+    {
+        StartCoroutine(captureBtnListen());
+    }
+
+    IEnumerator captureBtnListen()
+    {
+        loader.loadNextScene();
+        yield return null;
+    }
     
 }

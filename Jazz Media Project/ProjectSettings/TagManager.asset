@@ -21,6 +21,7 @@ TagManager:
   - Champion
   - ChampCard
   - TurnIndicator
+  - DealCardBtn
   layers:
   - Default
   - TransparentFX
